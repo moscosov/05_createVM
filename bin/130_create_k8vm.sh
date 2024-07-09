@@ -19,9 +19,9 @@ WORKER1=130_worker1_kcna_lab
 WORKER2=130_worker2_kcna_lab
 
 # Ks files URLs
-MASTER1_KS_FILE=http://ks.repo.local/kickstart/130_k8/master1.cfg
-WORK1_KS_FILE=http://ks.repo.local/kickstart/130_k8/worker1.cfg
-WORK2_KS_FILE=http://ks.repo.local/kickstart/130_k8/worker2.cfg
+MASTER1_KS_FILE=http://130ks.repo.local/kickstart/130_k8/master1.cfg
+WORK1_KS_FILE=http://130ks.repo.local/kickstart/130_k8/worker1.cfg
+WORK2_KS_FILE=http://130ks.repo.local/kickstart/130_k8/worker2.cfg
 
 # Repo URLs
 REPO=http://rocky9.repo.local/BaseOS/x86_64/os/
