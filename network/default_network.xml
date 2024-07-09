@@ -1,0 +1,135 @@
+<network>
+  <name>default</name>
+  <uuid>2bd5dea0-f2da-423f-85d9-72ac5fb1cda2</uuid>
+  <forward mode='nat'>
+    <nat>
+      <port start='1024' end='65535'/>
+    </nat>
+  </forward>
+  <bridge name='virbr0' stp='on' delay='0'/>
+  <mac address='52:54:00:23:c7:87'/>
+  <dns>
+    <host ip='192.168.122.153'>
+      <hostname>master.mentoria.lab</hostname>
+    </host>
+    <host ip='192.168.122.163'>
+      <hostname>worker1.mentoria.lab</hostname>
+    </host>
+    <host ip='192.168.122.173'>
+      <hostname>worker2.mentoria.lab</hostname>
+    </host>
+    <host ip='192.168.122.50'>
+      <hostname>129master.mentoria.lab</hostname>
+    </host>
+    <host ip='192.168.122.51'>
+      <hostname>129worker1.mentoria.lab</hostname>
+    </host>
+    <host ip='192.168.122.52'>
+      <hostname>129worker2.mentoria.lab</hostname>
+    </host>
+    <host ip='192.168.122.160'>
+      <hostname>130master1.kcna.lab</hostname>
+    </host>
+    <host ip='192.168.122.161'>
+      <hostname>130worker1.kcna.lab</hostname>
+    </host>
+    <host ip='192.168.122.162'>
+      <hostname>130worker2.kcna.lab</hostname>
+    </host>
+    <host ip='192.168.122.200'>
+      <hostname>120master.mentoria.lab</hostname>
+    </host>
+    <host ip='192.168.122.201'>
+      <hostname>120worker1.mentoria.lab</hostname>
+    </host>
+    <host ip='192.168.122.200'>
+      <hostname>120worker2.mentoria.lab</hostname>
+    </host>
+    <host ip='192.168.122.20'>
+      <hostname>20ansmaster.lab.local</hostname>
+    </host>
+    <host ip='192.168.122.30'>
+      <hostname>30answorker1.lab.local</hostname>
+    </host>
+    <host ip='192.168.122.31'>
+      <hostname>30answorker2.lab.local</hostname>
+    </host>
+    <host ip='192.168.122.32'>
+      <hostname>30answorker3.lab.local</hostname>
+    </host>
+    <host ip='192.168.122.33'>
+      <hostname>30answorker4.lab.local</hostname>
+    </host>
+    <host ip='192.168.122.34'>
+      <hostname>30answorker5.lab.local</hostname>
+    </host>
+    <host ip='192.168.122.35'>
+      <hostname>30answorker6.lab.local</hostname>
+    </host>
+    <host ip='192.168.122.36'>
+      <hostname>30answorker7.lab.local</hostname>
+    </host>
+    <host ip='192.168.122.37'>
+      <hostname>30answorker8.lab.local</hostname>
+    </host>
+    <host ip='192.168.122.40'>
+      <hostname>40answorker1.lab.local</hostname>
+    </host>
+    <host ip='192.168.122.41'>
+      <hostname>40answorker2.lab.local</hostname>
+    </host>
+    <host ip='192.168.122.42'>
+      <hostname>40answorker3.lab.local</hostname>
+    </host>
+    <host ip='192.168.122.43'>
+      <hostname>40answorker4.lab.local</hostname>
+    </host>
+    <host ip='192.168.122.44'>
+      <hostname>40answorker5.lab.local</hostname>
+    </host>
+    <host ip='192.168.122.60'>
+      <hostname>129storage.mentoria.lab</hostname>
+    </host>
+    <host ip='192.168.1.4'>
+      <hostname>rocky9.repo.local</hostname>
+      <hostname>epel9.repo.local</hostname>
+    </host>
+  </dns>
+  <ip address='192.168.122.1' netmask='255.255.255.0'>
+    <dhcp>
+      <range start='192.168.122.2' end='192.168.122.254'/>
+      <host mac='52:54:00:0e:e4:3c' ip='192.168.122.153'/>
+      <host mac='52:54:00:35:af:d2' ip='192.168.122.163'/>
+      <host mac='52:54:00:1d:80:92' ip='192.168.122.173'/>
+      <host mac='52:54:00:7a:e9:e8' ip='192.168.122.191'/>
+      <host mac='52:54:00:89:05:4e' ip='192.168.122.192'/>
+      <host mac='52:54:00:05:46:ee' ip='192.168.122.193'/>
+      <host mac='52:54:00:9a:cb:86' ip='192.168.122.200'/>
+      <host mac='52:54:00:9a:cb:87' ip='192.168.122.201'/>
+      <host mac='52:54:00:9a:cb:88' ip='192.168.122.202'/>
+      <host mac='52:54:00:9a:cb:20' ip='192.168.122.20'/>
+      <host mac='52:54:00:9a:cb:21' ip='192.168.122.21'/>
+      <host mac='52:54:00:9a:cb:30' ip='192.168.122.30'/>
+      <host mac='52:54:00:9a:cb:31' ip='192.168.122.31'/>
+      <host mac='52:54:00:9a:cb:32' ip='192.168.122.32'/>
+      <host mac='52:54:00:9a:cb:33' ip='192.168.122.33'/>
+      <host mac='52:54:00:9a:cb:34' ip='192.168.122.34'/>
+      <host mac='52:54:00:9a:cb:35' ip='192.168.122.35'/>
+      <host mac='52:54:00:9a:cb:36' ip='192.168.122.36'/>
+      <host mac='52:54:00:9a:cb:37' ip='192.168.122.37'/>
+      <host mac='52:54:00:9a:cb:40' ip='192.168.122.40'/>
+      <host mac='52:54:00:9a:cb:41' ip='192.168.122.41'/>
+      <host mac='52:54:00:9a:cb:42' ip='192.168.122.42'/>
+      <host mac='52:54:00:9a:cb:43' ip='192.168.122.43'/>
+      <host mac='52:54:00:9a:cb:44' ip='192.168.122.44'/>
+      <host mac='52:54:00:9a:cb:90' ip='192.168.122.50'/>
+      <host mac='52:54:00:9a:cb:91' ip='192.168.122.51'/>
+      <host mac='52:54:00:9a:cb:92' ip='192.168.122.52'/>
+      <host mac='52:54:00:9a:cb:50' ip='192.168.122.60'/>
+      <host mac='52:54:00:9a:cb:60' ip='192.168.122.160'/>
+      <host mac='52:54:00:9a:cb:61' ip='192.168.122.161'/>
+      <host mac='52:54:00:9a:cb:62' ip='192.168.122.162'/>
+    </dhcp>
+  </ip>
+</network>
+
