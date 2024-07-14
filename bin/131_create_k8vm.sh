@@ -14,25 +14,28 @@ OS_VARIANT="rocky9.0"
 OS_TYPE="linux"
 
 # Node names
-MASTER1=128_master1_kcna_lab
-WORKER1=128_worker1_kcna_lab
-WORKER2=128_worker2_kcna_lab
+MASTER1=131_master1_kcna_lab
+WORKER1=131_worker1_kcna_lab
+WORKER2=131_worker2_kcna_lab
 
 # Ks files URLs
-MASTER1_KS_FILE=http://rocky9.repo.local/128master1.cfg
-WORK1_KS_FILE=http://rocky9.repo.local/128worker1.cfg
-WORK2_KS_FILE=http://rocky9.repo.local/128worker2.cfg
+MASTER1_KS_FILE=http://131ks.repo.local/master1.cfg
+WORK1_KS_FILE=http://131ks.repo.local/worker1.cfg
+WORK2_KS_FILE=http://131ks.repo.local/worker2.cfg
 
 # Repo URLs
-REPO=http://rocky9.repo.local/BaseOS/x86_64/os/
+REPO=http://rocky9.repo.local/BaseOS/x86_64/os
 
 #PATHS Storage
-DIR_POOL=/mnt/ustore/kvm/mentoria_pool/
+DIR_POOL=/mnt/ustore/kvm/kcna/
+
+#Libvirt Pool
+LIVB_POOL=kcna
 
 # Storage names
-VOL_MASTER1=128_master1_mentoria.qcow2
-VOL_WORKER1=128_worker1_mentoria.qcow2
-VOL_WORKER2=128_worker2_mentoria.qcow2
+VOL_MASTER1=131_master1_kcna.qcow2
+VOL_WORKER1=131_worker1_kcna.qcow2
+VOL_WORKER2=131_worker2_kcna.qcow2
 
 echo -e "${GREEN} Poweroff VM\n"
 
@@ -55,18 +58,18 @@ sleep 2
 echo -e "${GREEN} Delete current storage\n"
 
 # Delete storage
-sudo /usr/bin/virsh vol-delete --pool mentoria --vol $VOL_MASTER1
-sudo /usr/bin/virsh vol-delete --pool mentoria --vol $VOL_WORKER1
-sudo /usr/bin/virsh vol-delete --pool mentoria --vol $VOL_WORKER2
+sudo /usr/bin/virsh vol-delete --pool $LIVB_POOL --vol $VOL_MASTER1
+sudo /usr/bin/virsh vol-delete --pool $LIVB_POOL --vol $VOL_WORKER1
+sudo /usr/bin/virsh vol-delete --pool $LIVB_POOL --vol $VOL_WORKER2
 
 sleep 2
 
 echo -e "${RED} Create storage to VM\n"
 
 # Create storage
-sudo /usr/bin/virsh vol-create-as --pool mentoria --name $VOL_MASTER1 --format qcow2 --capacity 25G
-sudo /usr/bin/virsh vol-create-as --pool mentoria --name $VOL_WORKER1 --format qcow2 --capacity 25G
-sudo /usr/bin/virsh vol-create-as --pool mentoria --name $VOL_WORKER2 --format qcow2 --capacity 25G
+sudo /usr/bin/virsh vol-create-as --pool $LIVB_POOL --name $VOL_MASTER1 --format qcow2 --capacity 25G
+sudo /usr/bin/virsh vol-create-as --pool $LIVB_POOL --name $VOL_WORKER1 --format qcow2 --capacity 25G
+sudo /usr/bin/virsh vol-create-as --pool $LIVB_POOL --name $VOL_WORKER2 --format qcow2 --capacity 25G
 
 sleep 2
 
@@ -82,13 +85,12 @@ sudo virt-install \
 --os-variant=${OS_VARIANT} \
 --autostart  \
 --disk ${DIR_POOL}${VOL_MASTER1},device=disk,bus=virtio \
---network network=default,mac=52:54:00:9a:cb:86 \
---check mac_in_use=off \
+--network network=default,mac=52:54:00:9a:cb:13 \
 --location ${REPO} \
 --vnc --autoconsole graphical \
 --extra-args "inst.ksdevice=en1s0p inst.ks=${MASTER1_KS_FILE} inst.repo=${REPO} inst.noverifyssl"
 
-sleep 30
+sleep 10
 
 date +%D-%T
 echo -e
@@ -102,17 +104,16 @@ sudo virt-install \
 --os-variant=${OS_VARIANT} \
 --autostart  \
 --disk ${DIR_POOL}${VOL_WORKER1},device=disk,bus=virtio \
---network network=default,mac=52:54:00:9a:cb:87 \
---check mac_in_use=off \
+--network network=default,mac=52:54:00:9a:cb:14 \
 --location ${REPO} \
 --vnc --autoconsole graphical \
 --extra-args "inst.ksdevice=en1s0p inst.ks=${WORK1_KS_FILE} inst.repo=${REPO} inst.noverifyssl"
 
-sleep 30
+sleep 10
 
 date +%D-%T
 echo -e
-echo -e "${WHITE} Install ${WORKER1}\n"
+echo -e "${WHITE} Install ${WORKER2}\n"
 
 sudo virt-install \
 -n ${WORKER2} \
@@ -122,8 +123,7 @@ sudo virt-install \
 --os-variant=${OS_VARIANT} \
 --autostart  \
 --disk ${DIR_POOL}${VOL_WORKER2},device=disk,bus=virtio \
---network network=default,mac=52:54:00:9a:cb:88 \
---check mac_in_use=off \
+--network network=default,mac=52:54:00:9a:cb:15 \
 --location ${REPO} \
 --vnc --autoconsole graphical \
 --extra-args "inst.ksdevice=en1s0p inst.ks=${WORK2_KS_FILE} inst.repo=${REPO} inst.noverifyssl"

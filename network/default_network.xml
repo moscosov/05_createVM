@@ -1,4 +1,4 @@
-<network>
+<network connections='4'>
   <name>default</name>
   <uuid>2bd5dea0-f2da-423f-85d9-72ac5fb1cda2</uuid>
   <forward mode='nat'>
@@ -28,13 +28,13 @@
       <hostname>129worker2.mentoria.lab</hostname>
     </host>
     <host ip='192.168.122.160'>
-      <hostname>130master1.kcna.lab</hostname>
+      <hostname>130master1.kcna.local</hostname>
     </host>
     <host ip='192.168.122.161'>
-      <hostname>130worker1.kcna.lab</hostname>
+      <hostname>130worker1.kcna.local</hostname>
     </host>
     <host ip='192.168.122.162'>
-      <hostname>130worker2.kcna.lab</hostname>
+      <hostname>130worker2.kcna.local</hostname>
     </host>
     <host ip='192.168.122.200'>
       <hostname>120master.mentoria.lab</hostname>
@@ -93,6 +93,26 @@
     <host ip='192.168.1.4'>
       <hostname>rocky9.repo.local</hostname>
       <hostname>epel9.repo.local</hostname>
+      <hostname>130ks.repo.local</hostname>
+      <hostname>128ks.repo.local</hostname>
+    </host>
+    <host ip='192.168.122.10'>
+      <hostname>128master1.kcna.lab</hostname>
+    </host>
+    <host ip='192.168.122.11'>
+      <hostname>128worker1.kcna.lab</hostname>
+    </host>
+    <host ip='192.168.122.12'>
+      <hostname>128worker2.kcna.lab</hostname>
+    </host>
+    <host ip='192.168.122.13'>
+      <hostname>131master1.kcna.local</hostname>
+    </host>
+    <host ip='192.168.122.14'>
+      <hostname>131worker1.kcna.local</hostname>
+    </host>
+    <host ip='192.168.122.15'>
+      <hostname>131worker2.kcna.local</hostname>
     </host>
   </dns>
   <ip address='192.168.122.1' netmask='255.255.255.0'>
@@ -129,6 +149,12 @@
       <host mac='52:54:00:9a:cb:60' ip='192.168.122.160'/>
       <host mac='52:54:00:9a:cb:61' ip='192.168.122.161'/>
       <host mac='52:54:00:9a:cb:62' ip='192.168.122.162'/>
+      <host mac='52:54:00:9a:ca:10' ip='192.168.122.10'/>
+      <host mac='52:54:00:9a:ca:11' ip='192.168.122.11'/>
+      <host mac='52:54:00:9a:ca:12' ip='192.168.122.12'/>
+      <host mac='52:54:00:9a:cb:13' ip='192.168.122.13'/>
+      <host mac='52:54:00:9a:cb:14' ip='192.168.122.14'/>
+      <host mac='52:54:00:9a:cb:15' ip='192.168.122.15'/>
     </dhcp>
   </ip>
 </network>

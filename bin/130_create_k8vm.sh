@@ -19,12 +19,12 @@ WORKER1=130_worker1_kcna_lab
 WORKER2=130_worker2_kcna_lab
 
 # Ks files URLs
-MASTER1_KS_FILE=http://130ks.repo.local/kickstart/130_k8/master1.cfg
-WORK1_KS_FILE=http://130ks.repo.local/kickstart/130_k8/worker1.cfg
-WORK2_KS_FILE=http://130ks.repo.local/kickstart/130_k8/worker2.cfg
+MASTER1_KS_FILE=http://130ks.repo.local/master1.cfg
+WORK1_KS_FILE=http://130ks.repo.local/worker1.cfg
+WORK2_KS_FILE=http://130ks.repo.local/worker2.cfg
 
 # Repo URLs
-REPO=http://rocky9.repo.local/BaseOS/x86_64/os/
+REPO=http://rocky9.repo.local/BaseOS/x86_64/os
 
 #PATHS Storage
 DIR_POOL=/mnt/ustore/kvm/kcna/
@@ -83,14 +83,13 @@ sudo virt-install \
 --vcpus ${VCPUS} \
 --os-type=${OS_TYPE} \
 --os-variant=${OS_VARIANT} \
---autostart  \
 --disk ${DIR_POOL}${VOL_MASTER1},device=disk,bus=virtio \
 --network network=default,mac=52:54:00:9a:cb:60 \
 --location ${REPO} \
 --vnc --autoconsole graphical \
 --extra-args "inst.ksdevice=en1s0p inst.ks=${MASTER1_KS_FILE} inst.repo=${REPO} inst.noverifyssl"
 
-sleep 60
+sleep 10
 
 date +%D-%T
 echo -e
@@ -102,14 +101,13 @@ sudo virt-install \
 --vcpus ${VCPUS} \
 --os-type=${OS_TYPE} \
 --os-variant=${OS_VARIANT} \
---autostart  \
 --disk ${DIR_POOL}${VOL_WORKER1},device=disk,bus=virtio \
 --network network=default,mac=52:54:00:9a:cb:61 \
 --location ${REPO} \
 --vnc --autoconsole graphical \
 --extra-args "inst.ksdevice=en1s0p inst.ks=${WORK1_KS_FILE} inst.repo=${REPO} inst.noverifyssl"
 
-sleep 60
+sleep 10
 
 date +%D-%T
 echo -e
@@ -121,7 +119,6 @@ sudo virt-install \
 --vcpus ${VCPUS} \
 --os-type=${OS_TYPE} \
 --os-variant=${OS_VARIANT} \
---autostart  \
 --disk ${DIR_POOL}${VOL_WORKER2},device=disk,bus=virtio \
 --network network=default,mac=52:54:00:9a:cb:62 \
 --location ${REPO} \
