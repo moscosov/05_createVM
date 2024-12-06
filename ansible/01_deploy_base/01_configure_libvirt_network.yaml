@@ -30,5 +30,5 @@
         msg: "{{ netdump_result.stdout }}"
 
     - name: Pausa de 30 segundos - Validar las hosts
-        pause:
+      ansible.builtin.pause:
         seconds: 30
