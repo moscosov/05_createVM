@@ -1,0 +1,14 @@
+---
+- name: Install VMs
+  hosts: base
+    
+  tasks:
+  
+  - name: Hacer un ping
+    ansible.builtin.ping:
+
+  - name: Instalar VMs server
+    #become: yes
+    #become_user: root
+    ansible.builtin.script:
+      cmd: resources/100_fase1_prodev.sh

@@ -1,0 +1,27 @@
+---
+     - name: create download directory
+       become: yes
+       become_user: root
+       ansible.builtin.file:
+         path: /root/download
+         state: directory
+         mode: 0755
+       when: inventory_hostname in groups['258jumbox']
+
+     - name: Copiar download.txt file
+       become: yes
+       become_user: root
+       ansible.builtin.copy:
+         src: resources/download.txt
+         dest: /root/download/download.txt
+         mode: 0644
+         owner: root
+         group: root
+       when: inventory_hostname in groups['258jumbox']
+
+     - name: Bajar herramientas
+       become: yes
+       become_user: root
+       ansible.builtin.shell:
+         wget --https-only --timestamping -P download -i download.txt
+       when: inventory_hostname in groups['258jumbox']

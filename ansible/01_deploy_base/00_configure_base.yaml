@@ -1,0 +1,22 @@
+---
+- name: Install Base System
+  hosts: base, 259jumbox, 259k8s 
+    
+  tasks:
+  
+  - name: Hacer un ping
+    ansible.builtin.ping:
+
+
+  - name: Configure dns libvirt
+    include_tasks: 01_configure_libvirt_network.yaml
+
+  - name: Install packages
+    include_tasks: 02_install_package.yaml
+
+  - name: Configure jumbox
+    include_tasks: 03_configure_jumbox.yaml
+
+  - name: Configure firewalld
+    include_tasks: 04_disable_firewalld.yaml
+

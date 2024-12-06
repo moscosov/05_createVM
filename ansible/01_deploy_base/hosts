@@ -1,0 +1,15 @@
+[base]
+mars.lab.local ansible_ssh_user=pablo
+
+[259k8s]
+259master.kcna.local ansible_ssh_user=root
+259worker1.kcna.local ansible_ssh_user=root
+259worker2.kcna.local ansible_ssh_user=root
+259jumbox.kcna.local ansible_ssh_user=root
+
+[259jumbox]
+259jumbox.kcna.local ansible_ssh_user=root
+
+[base:vars]
+#ansible_python_interpreter=/usr/bin/python3.6
+#ansible_python_interpreter=/usr/bin/python3.9

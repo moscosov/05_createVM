@@ -1,0 +1,22 @@
+  
+    - name: Hacer un ping
+      become: yes
+      become_user: user1
+      ansible.builtin.ping:
+      when: inventory_hostname in groups['259jumbox']
+
+    - name: Instalar paquetes
+      become_user: root
+      ansible.builtin.dnf:
+        name: 
+          - openssl
+          - git
+          - vim-enhanced
+          - curl
+          - wget
+        state: present
+      when: inventory_hostname in groups['259jumbox']
+      register: dnfinstall_result
+
+    - debug:
+        msg: "{{ dnfinstall_result.stdout }}"

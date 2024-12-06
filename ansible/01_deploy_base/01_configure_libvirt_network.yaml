@@ -1,0 +1,33 @@
+  
+    - name: Hacer un ping
+      become: yes
+      become_user: pablo
+      ansible.builtin.ping:
+  
+    - name: Agregar entradas para nuevos hosts
+      become: yes
+      become_user: pablo
+      ansible.builtin.shell: |
+        sudo virsh net-update default add-last ip-dhcp-host '<host mac="52:54:00:9a:16:70"  ip="192.168.122.70"/>' --live --config --parent-index 0
+        sudo virsh net-update default add-last ip-dhcp-host '<host mac="52:54:00:9a:16:71"  ip="192.168.122.71"/>' --live --config --parent-index 0
+        sudo virsh net-update default add-last ip-dhcp-host '<host mac="52:54:00:9a:16:72"  ip="192.168.122.72"/>' --live --config --parent-index 0
+        sudo virsh net-update default add-last ip-dhcp-host '<host mac="52:54:00:9a:16:73"  ip="192.168.122.73"/>' --live --config --parent-index 0
+        sudo virsh net-update default add  dns-host  '<host ip="192.168.122.70"><hostname>259master1.kcna.local</hostname></host>' --live --config
+        sudo virsh net-update default add  dns-host  '<host ip="192.168.122.71"><hostname>259worker1.kcna.local</hostname></host>' --live --config
+        sudo virsh net-update default add  dns-host  '<host ip="192.168.122.72"><hostname>259worker2.kcna.local</hostname></host>' --live --config
+        sudo virsh net-update default add  dns-host  '<host ip="192.168.122.73"><hostname>259jumbox.kcna.local</hostname></host>' --live --config
+      when: inventory_hostname in groups['base']
+
+    - name: Validar adición de hosts
+      become: yes
+      become_user: pablo
+      ansible.builtin.shell:
+        sudo virsh net-dumpxml --network default
+      register: netdump_result
+
+    - debug:
+        msg: "{{ netdump_result.stdout }}"
+
+    - name: Pausa de 30 segundos - Validar las hosts
+        pause:
+        seconds: 30
