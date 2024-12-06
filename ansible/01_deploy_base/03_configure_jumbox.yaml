@@ -23,5 +23,7 @@
        become: yes
        become_user: root
        ansible.builtin.shell:
-         wget --https-only --timestamping -P download -i download.txt
+       args:  
+         cmd: wget  --timestamping -P /root/download -i download.txt
+         chdir: /root/download  
        when: inventory_hostname in groups['259jumbox']

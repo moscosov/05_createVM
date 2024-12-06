@@ -1,9 +1,9 @@
   
     - name: Hacer un ping
       become: yes
-      become_user: user1
+      become_user: root
       ansible.builtin.ping:
-      when: inventory_hostname in groups['259jumbox']
+      when: inventory_hostname in groups['259k8s']
 
     - name: Instalar paquetes
       become_user: root
@@ -15,4 +15,4 @@
           - curl
           - wget
         state: present
-      when: inventory_hostname in groups['259jumbox']
+      when: inventory_hostname in groups['259k8s']

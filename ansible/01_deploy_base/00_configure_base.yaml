@@ -4,12 +4,12 @@
     
   tasks:
   
-  - name: Hacer un ping
-    ansible.builtin.ping:
-    when: inventory_hostname in groups['base']  
+    #- name: Hacer un ping
+    #ansible.builtin.ping:
+      #when: inventory_hostname in groups['base']  
 
-  - name: Configure dns libvirt
-    include_tasks: 01_configure_libvirt_network.yaml
+      #  - name: Configure dns libvirt
+      #include_tasks: 01_configure_libvirt_network.yaml
 
   - name: Install packages
     include_tasks: 02_install_package.yaml
