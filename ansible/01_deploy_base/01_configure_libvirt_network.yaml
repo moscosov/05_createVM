@@ -24,6 +24,7 @@
       ansible.builtin.shell:
         sudo virsh net-dumpxml --network default
       register: netdump_result
+      when: inventory_hostname in groups['base']
 
     - debug:
         msg: "{{ netdump_result.stdout }}"
