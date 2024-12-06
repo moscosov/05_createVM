@@ -8,7 +8,6 @@
     ansible.builtin.ping:
     when: inventory_hostname in groups['base']  
 
-
   - name: Configure dns libvirt
     include_tasks: 01_configure_libvirt_network.yaml
 

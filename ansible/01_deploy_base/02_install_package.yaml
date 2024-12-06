@@ -16,7 +16,3 @@
           - wget
         state: present
       when: inventory_hostname in groups['259jumbox']
-      register: dnfinstall_result
-
-    - debug:
-        msg: "{{ dnfinstall_result.stdout }}"
