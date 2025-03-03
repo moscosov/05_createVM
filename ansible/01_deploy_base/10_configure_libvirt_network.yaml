@@ -40,6 +40,7 @@
       sudo virsh net-update default add  dns-host  '<host ip="192.168.122.131"><hostname>10etcdm1.hard.lab</hostname></host>' --live --config
       sudo virsh net-update default add  dns-host  '<host ip="192.168.122.132"><hostname>10etcdm2.hard.lab</hostname></host>' --live --config
       sudo virsh net-update default add  dns-host  '<host ip="192.168.122.133"><hostname>10etcdm3.hard.lab</hostname></host>' --live --config
+    ignore_errors: true    
     when: inventory_hostname in groups['base']
     
   - name: Validar adición de hosts
