@@ -2,16 +2,15 @@
 mars.lab.local ansible_ssh_user=pablo
 
 [kubernetes]
-10etcdm1.hard.lab
-10etcdm2.hard.lab
-10etcdm3.hard.lab
-10worker1.hard.lab
-10worker2.hard.lab
-10worker3.hard.lab
-10worker4.hard.lab
-10worker5.hard.lab
-10worker6.hard.lab
-10master1.hard.lab
-10master2.hard.lab
-10master3.hard.lab
-
+10etcdm1.hard.lab   ansible_ssh_user=root
+10etcdm2.hard.lab   ansible_ssh_user=root
+10etcdm3.hard.lab   ansible_ssh_user=root
+10worker1.hard.lab  ansible_ssh_user=root
+10worker2.hard.lab  ansible_ssh_user=root
+10worker3.hard.lab  ansible_ssh_user=root
+10worker4.hard.lab  ansible_ssh_user=root
+10worker5.hard.lab  ansible_ssh_user=root
+10worker6.hard.lab  ansible_ssh_user=root
+10master1.hard.lab  ansible_ssh_user=root
+10master2.hard.lab  ansible_ssh_user=root
+10master3.hard.lab  ansible_ssh_user=root
