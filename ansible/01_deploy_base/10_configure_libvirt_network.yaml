@@ -25,7 +25,7 @@
       sudo virsh net-update default add-last ip-dhcp-host '<host mac="52:54:00:9a:cc:54"  ip="192.168.122.154"/>' --live --config --parent-index 0
       sudo virsh net-update default add-last ip-dhcp-host '<host mac="52:54:00:9a:cc:55"  ip="192.168.122.155"/>' --live --config --parent-index 0
       sudo virsh net-update default add-last ip-dhcp-host '<host mac="52:54:00:9a:cc:56"  ip="192.168.122.156"/>' --live --config --parent-index 0
-      sudo virsh net-update default add-last ip-dhcp-host '<host mac="52:54:00:9a:cc:31"  ip="192.168.122.151"/>' --live --config --parent-index 0
+      sudo virsh net-update default add-last ip-dhcp-host '<host mac="52:54:00:9a:cc:31"  ip="192.168.122.131"/>' --live --config --parent-index 0
       sudo virsh net-update default add-last ip-dhcp-host '<host mac="52:54:00:9a:cc:32"  ip="192.168.122.132"/>' --live --config --parent-index 0
       sudo virsh net-update default add-last ip-dhcp-host '<host mac="52:54:00:9a:cc:33"  ip="192.168.122.133"/>' --live --config --parent-index 0
       sudo virsh net-update default add  dns-host  '<host ip="192.168.122.171"><hostname>10master1.hard.lab</hostname></host>' --live --config
