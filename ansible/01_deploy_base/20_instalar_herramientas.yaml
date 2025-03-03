@@ -1,0 +1,65 @@
+---
+#- name: Instalar herramientas
+  #hosts: 258_hosts
+    #become: true
+    #become_user: root  
+  
+  #tasks: 
+
+  - name: Hacer un ping
+    become: yes
+    become_user: root
+    ansible.builtin.ping:
+ 
+  - name: instalar herramientas
+    become: true
+    become_user: root  
+    ansible.builtin.apt:
+      pkg: 
+        - git
+        - wget
+        - curl
+        - vim-nox
+        - openssl
+        - bash-completion
+        - elinks
+      state: present
+    when: inventory_hostname in groups['kubernetes']   
+  
+  - name: Example clone of a single branch
+    become: true
+    become_user: root  
+    ansible.builtin.git:
+      repo: https://github.com/kelseyhightower/kubernetes-the-hard-way.git
+      dest: /root/
+      single_branch: yes
+      version: master        
+    when: inventory_hostname in groups['kubernetes']
+    
+  - name: Copiar download.txt
+    become: true
+    become_user: root  
+    ansible.builtin.copy:
+      src: ~/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/ansible/01_deploy_base/resources/downloads.txt
+      dest: /root/k8s-the-hard-way
+      owner: root
+      group: root
+    when: inventory_hostname in groups['kubernetes']
+    
+  - name: Descargar binarios k8s
+    become: true
+    become_user: root  
+    ansible.builtin.shell: wget -q --show-progress --https-only --timestamping -P downloads -i downloads.txt   
+    args:
+      chdir: /root/k8s-the-hard-way
+    when: inventory_hostname in groups['kubernetes']
+
+  - name: Copiar /etc/hosts.txt
+    become: true
+    become_user: root  
+    ansible.builtin.copy:
+      src: ~/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/ansible/01_deploy_base/resources/hosts.txt
+      dest: /etc/
+      owner: root
+      group: root
+    when: inventory_hostname in groups['kubernetes']    

@@ -1,9 +1,0 @@
----
-     - name: Deshabilitar Firewall
-       become: yes
-       become_user: root
-       ansible.builtin.systemd_service:
-         name: firewalld.service
-         enabled: false
-         state: stopped
-       when: inventory_hostname in groups['259k8s']

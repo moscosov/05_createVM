@@ -9,10 +9,18 @@
 # IP-Address  Full-Qualified-Hostname  Short-Hostname
 #
 
-127.0.0.1       localhost kuberlab.local
-192.168.1.4     rocky9.repo.local epel9.repo.local 130ks.repo.local 128ks.repo.local 131ks.repo.local 259ks.repo.local
-192.168.1.104    rocky9.lab.local ks.lab.local epel9.lab.local
-192.168.1.99    mars.lab.local
+192.168.122.131     10etcdm1    10etcdm1.hard.lab
+192.168.122.132     10etcdm2    10etcdm2.hard.lab
+192.168.122.133     10etcdm3    10etcdm3.hard.lab
+192.168.122.151     10worker1   10worker1.hard.lab
+192.168.122.152     10worker2   10worker2.hard.lab
+192.168.122.153     10worker3   10worker3.hard.lab
+192.168.122.154     10worker4   10worker4.hard.lab
+192.168.122.155     10worker5   10worker5.hard.lab
+192.168.122.156     10worker6   10worker6.hard.lab
+192.168.122.171     10master1   10master1.hard.lab
+192.168.122.172     10master2   10master2.hard.lab
+192.168.122.173     10master3   10master3.hard.lab
 
 # special IPv6 addresses
 ::1             localhost ipv6-localhost ipv6-loopback
@@ -23,9 +31,5 @@ ff00::0         ipv6-mcastprefix
 ff02::1         ipv6-allnodes
 ff02::2         ipv6-allrouters
 ff02::3         ipv6-allhosts
-#172.30.1.150    epel9.lab.local ks.lab.local rocky9.lab.local
-# 258 k8s remote hosts
-192.168.122.70 259master1 259master.kcna.local
-192.168.122.71 259worker1 259worker1.kcna.local
-192.168.122.72 259worker2 259worker2.kcna.local
-192.168.122.73 259jumbox  259jumbox.kcna.local
+
+192.168.1.99    mars    mars.lab.local

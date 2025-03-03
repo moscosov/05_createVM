@@ -1,22 +1,12 @@
 ---
 - name: Install Base System
-  hosts: base, 259jumbox, 259k8s 
+  hosts: base, kubernetes
     
   tasks:
   
-    #- name: Hacer un ping
-    #ansible.builtin.ping:
-      #when: inventory_hostname in groups['base']  
+  - name: Configure base libvirt dns
+    include_tasks: 10_configure_libvirt_network.yaml
 
-      #  - name: Configure dns libvirt
-      #include_tasks: 01_configure_libvirt_network.yaml
-
-  - name: Install packages
-    include_tasks: 02_install_package.yaml
-
-  - name: Configure jumbox
-    include_tasks: 03_configure_jumbox.yaml
-
-  - name: Configure firewalld
-    include_tasks: 04_disable_firewalld.yaml
+  - name: Configure kubernetes master, workers and etcd servers
+    include_tasks: 20_instalar_herramientas.yaml
 

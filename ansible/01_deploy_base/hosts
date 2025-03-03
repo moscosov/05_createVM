@@ -1,15 +1,17 @@
 [base]
 mars.lab.local ansible_ssh_user=pablo
 
-[259k8s]
-259master.kcna.local ansible_ssh_user=root
-259worker1.kcna.local ansible_ssh_user=root
-259worker2.kcna.local ansible_ssh_user=root
-259jumbox.kcna.local ansible_ssh_user=root
+[kubernetes]
+10etcdm1.hard.lab
+10etcdm2.hard.lab
+10etcdm3.hard.lab
+10worker1.hard.lab
+10worker2.hard.lab
+10worker3.hard.lab
+10worker4.hard.lab
+10worker5.hard.lab
+10worker6.hard.lab
+10master1.hard.lab
+10master2.hard.lab
+10master3.hard.lab
 
-[259jumbox]
-259jumbox.kcna.local ansible_ssh_user=root
-
-[base:vars]
-#ansible_python_interpreter=/usr/bin/python3.6
-#ansible_python_interpreter=/usr/bin/python3.9

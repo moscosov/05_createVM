@@ -1,0 +1,58 @@
+---
+#- name: Configurar Libvirt Network in Host
+#  hosts: base
+#  become: yes
+#  become_user: root
+#  gather_facts: true
+
+#  tasks:
+  
+  - name: Hacer un ping
+    become: yes
+    become_user: root
+    ansible.builtin.ping:
+  
+  - name: Agregar entradas para nuevos hosts
+    become: yes
+    become_user: root
+    ansible.builtin.shell: |
+      sudo virsh net-update default add-last ip-dhcp-host '<host mac="52:54:00:9a:cc:71"  ip="192.168.122.171"/>' --live --config --parent-index 0
+      sudo virsh net-update default add-last ip-dhcp-host '<host mac="52:54:00:9a:cc:72"  ip="192.168.122.172"/>' --live --config --parent-index 0
+      sudo virsh net-update default add-last ip-dhcp-host '<host mac="52:54:00:9a:cc:73"  ip="192.168.122.173"/>' --live --config --parent-index 0
+      sudo virsh net-update default add-last ip-dhcp-host '<host mac="52:54:00:9a:cc:51"  ip="192.168.122.151"/>' --live --config --parent-index 0
+      sudo virsh net-update default add-last ip-dhcp-host '<host mac="52:54:00:9a:cc:52"  ip="192.168.122.152"/>' --live --config --parent-index 0
+      sudo virsh net-update default add-last ip-dhcp-host '<host mac="52:54:00:9a:cc:53"  ip="192.168.122.153"/>' --live --config --parent-index 0
+      sudo virsh net-update default add-last ip-dhcp-host '<host mac="52:54:00:9a:cc:54"  ip="192.168.122.154"/>' --live --config --parent-index 0
+      sudo virsh net-update default add-last ip-dhcp-host '<host mac="52:54:00:9a:cc:55"  ip="192.168.122.155"/>' --live --config --parent-index 0
+      sudo virsh net-update default add-last ip-dhcp-host '<host mac="52:54:00:9a:cc:56"  ip="192.168.122.156"/>' --live --config --parent-index 0
+      sudo virsh net-update default add-last ip-dhcp-host '<host mac="52:54:00:9a:cc:31"  ip="192.168.122.151"/>' --live --config --parent-index 0
+      sudo virsh net-update default add-last ip-dhcp-host '<host mac="52:54:00:9a:cc:32"  ip="192.168.122.132"/>' --live --config --parent-index 0
+      sudo virsh net-update default add-last ip-dhcp-host '<host mac="52:54:00:9a:cc:33"  ip="192.168.122.133"/>' --live --config --parent-index 0
+      sudo virsh net-update default add  dns-host  '<host ip="192.168.122.171"><hostname>10master1.hard.lab</hostname></host>' --live --config
+      sudo virsh net-update default add  dns-host  '<host ip="192.168.122.172"><hostname>10master2.hard.lab</hostname></host>' --live --config
+      sudo virsh net-update default add  dns-host  '<host ip="192.168.122.173"><hostname>10master3.hard.lab</hostname></host>' --live --config
+      sudo virsh net-update default add  dns-host  '<host ip="192.168.122.151"><hostname>10worker1.hard.lab</hostname></host>' --live --config
+      sudo virsh net-update default add  dns-host  '<host ip="192.168.122.152"><hostname>10worker2.hard.lab</hostname></host>' --live --config
+      sudo virsh net-update default add  dns-host  '<host ip="192.168.122.153"><hostname>10worker3.hard.lab</hostname></host>' --live --config
+      sudo virsh net-update default add  dns-host  '<host ip="192.168.122.154"><hostname>10worker4.hard.lab</hostname></host>' --live --config
+      sudo virsh net-update default add  dns-host  '<host ip="192.168.122.155"><hostname>10worker5.hard.lab</hostname></host>' --live --config
+      sudo virsh net-update default add  dns-host  '<host ip="192.168.122.156"><hostname>10worker6.hard.lab</hostname></host>' --live --config
+      sudo virsh net-update default add  dns-host  '<host ip="192.168.122.131"><hostname>10etcdm1.hard.lab</hostname></host>' --live --config
+      sudo virsh net-update default add  dns-host  '<host ip="192.168.122.132"><hostname>10etcdm2.hard.lab</hostname></host>' --live --config
+      sudo virsh net-update default add  dns-host  '<host ip="192.168.122.133"><hostname>10etcdm3.hard.lab</hostname></host>' --live --config
+    when: inventory_hostname in groups['base']
+    
+  - name: Validar adición de hosts
+    become: yes
+    become_user: root
+    ansible.builtin.shell:
+      sudo virsh net-dumpxml --network default
+    register: netdump_result
+    when: inventory_hostname in groups['base']
+
+  - debug:
+      msg: "{{ netdump_result.stdout }}"
+
+  - name: Pausa de 15 segundos - Validar las hosts
+    pause:
+      seconds: 15
