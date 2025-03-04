@@ -228,7 +228,7 @@ sudo virt-install \
 --vnc --autoconsole graphical \
 --cloud-init user-data=${USER_DATA_J1},meta-data=${META_DATA_J1},network-config=${NET_DATA_J1}
 
-sleep 10
+sleep 5
 
 date +%D-%T
 echo -e
@@ -245,7 +245,7 @@ sudo virt-install \
 --vnc --autoconsole graphical \
 --cloud-init user-data=${USER_DATA_M1},meta-data=${META_DATA_M1},network-config=${NET_DATA_M1}
 
-sleep 10
+sleep 5
 
 date +%D-%T
 echo -e
@@ -262,7 +262,7 @@ sudo virt-install \
 --vnc --autoconsole graphical \
 --cloud-init user-data=${USER_DATA_M2},meta-data=${META_DATA_M2},network-config=${NET_DATA_M2}
 
-sleep 10
+sleep 5
 
 date +%D-%T
 echo -e
@@ -279,7 +279,7 @@ sudo virt-install \
 --vnc --autoconsole graphical \
 --cloud-init user-data=${USER_DATA_M3},meta-data=${META_DATA_M3},network-config=${NET_DATA_M3}
 
-sleep 10
+sleep 5
 
 date +%D-%T
 echo -e
@@ -296,7 +296,7 @@ sudo virt-install \
 --vnc --autoconsole graphical \
 --cloud-init user-data=${USER_DATA_W1},meta-data=${META_DATA_W1},network-config=${NET_DATA_W1}
 
-sleep 10
+sleep 5
 
 date +%D-%T
 echo -e
@@ -313,7 +313,7 @@ sudo virt-install \
 --vnc --autoconsole graphical \
 --cloud-init user-data=${USER_DATA_W2},meta-data=${META_DATA_W2},network-config=${NET_DATA_W2}
 
-sleep 10
+sleep 5
 
 date +%D-%T
 echo -e
@@ -330,7 +330,7 @@ sudo virt-install \
 --vnc --autoconsole graphical \
 --cloud-init user-data=${USER_DATA_W3},meta-data=${META_DATA_W3},network-config=${NET_DATA_W3}
 
-sleep 10
+sleep 5
 
 date +%D-%T
 echo -e
@@ -347,7 +347,7 @@ sudo virt-install \
 --vnc --autoconsole graphical \
 --cloud-init user-data=${USER_DATA_W4},meta-data=${META_DATA_W4},network-config=${NET_DATA_W4}
 
-sleep 10
+sleep 5
 
 date +%D-%T
 echo -e
@@ -364,7 +364,7 @@ sudo virt-install \
 --vnc --autoconsole graphical \
 --cloud-init user-data=${USER_DATA_W5},meta-data=${META_DATA_W5},network-config=${NET_DATA_W5}
 
-sleep 10
+sleep 5
 
 date +%D-%T
 echo -e
@@ -381,7 +381,7 @@ sudo virt-install \
 --vnc --autoconsole graphical \
 --cloud-init user-data=${USER_DATA_W6},meta-data=${META_DATA_W6},network-config=${NET_DATA_W6}
 
-sleep 10
+sleep 5
 
 date +%D-%T
 echo -e
@@ -398,7 +398,7 @@ sudo virt-install \
 --vnc --autoconsole graphical \
 --cloud-init user-data=${USER_DATA_E1},meta-data=${META_DATA_E1},network-config=${NET_DATA_E1}
 
-sleep 10
+sleep 5
 
 date +%D-%T
 echo -e
@@ -415,7 +415,7 @@ sudo virt-install \
 --vnc --autoconsole graphical \
 --cloud-init user-data=${USER_DATA_E2},meta-data=${META_DATA_E2},network-config=${NET_DATA_E2}
 
-sleep 10
+sleep 5
 
 date +%D-%T
 echo -e
