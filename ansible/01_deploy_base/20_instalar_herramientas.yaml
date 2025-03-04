@@ -41,6 +41,7 @@
     become_user: root  
     ansible.builtin.copy:
       src: /home/user1/github/05_createVM/ansible/01_deploy_base/resources/downloads.txt
+      #src: ~/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/ansible/01_deploy_base/resources/downloads.txt
       dest: /root/kelseyhightower
       owner: root
       group: root
@@ -59,6 +60,7 @@
     become_user: root  
     ansible.builtin.copy:
       src: /home/user1/github/05_createVM/ansible/01_deploy_base/resources/hosts
+      #src: ~/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/ansible/01_deploy_base/resources/hosts
       dest: /etc/
       owner: root
       group: root
