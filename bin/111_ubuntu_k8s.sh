@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+date +%D-%T
+echo -e
+echo -e "${GREEN} Set Variables\n"
+
 # Define echo color
 GREEN="\033[1;32m"
 RED="\033[1;31m"
@@ -111,7 +115,8 @@ USER_DATA_J1=/home/pablo/documentos/informatica/linux/certificaciones/05_createV
 NET_DATA_J1=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/jumpbox1-network-config.yaml
 META_DATA_J1=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/jumpbox1-meta-data.yaml
 
-echo -e "${GREEN} Poweroff VM\n"
+date +%D-%T
+echo -e "${BLUE} Poweroff VM\n"
 
 # Shutdown VM
 sudo /usr/bin/virsh destroy --domain $MASTER1
@@ -130,6 +135,7 @@ sudo /usr/bin/virsh destroy --domain $JUMPBOX
 
 sleep 2
 
+date +%D-%T
 echo -e "${RED} Undefine current VM\n"
 
 # Undefine current VM
@@ -149,6 +155,7 @@ sudo /usr/bin/virsh undefine --domain $JUMPBOX
 
 sleep 2
 
+date +%D-%T
 echo -e "${GREEN} Delete current storage\n"
 
 # Delete storage
@@ -168,6 +175,7 @@ sudo /usr/bin/virsh vol-delete --pool $LIVB_POOL --vol $VOL_JUMPBOX
 
 sleep 2
 
+date +%D-%T
 echo -e "${RED} Create storage to VM\n"
 # Create master storage
 qemu-img create -b $IMAGE -f qcow2 -F qcow2 ${DIR_POOL}${VOL_MASTER1} $NODEDS
