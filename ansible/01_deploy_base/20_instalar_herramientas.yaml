@@ -31,7 +31,7 @@
     become_user: root  
     ansible.builtin.git:
       repo: https://github.com/kelseyhightower/kubernetes-the-hard-way.git
-      dest: /root/kelseyhightower
+      dest: /root/kubernetes-the-hard-way
       single_branch: yes
       version: master        
     when: inventory_hostname in groups['kubernetes']
@@ -41,8 +41,8 @@
     become_user: root  
     ansible.builtin.copy:
       src: /home/user1/github/05_createVM/ansible/01_deploy_base/resources/downloads.txt
-      #src: ~/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/ansible/01_deploy_base/resources/downloads.txt
-      dest: /root/kelseyhightower
+      #src: /home/pablo/documentos/informatica/linux/certificaciones/05_createVM/ansible/01_deploy_base/resources/downloads.txt
+      dest: /root/kubernetes-the-hard-way
       owner: root
       group: root
     when: inventory_hostname in groups['kubernetes']
@@ -52,7 +52,7 @@
     become_user: root  
     ansible.builtin.shell: wget -q --show-progress --https-only --timestamping -P downloads -i downloads.txt   
     args:
-      chdir: /root/kelseyhightower
+      chdir: /root/kubernetes-the-hard-way
     when: inventory_hostname in groups['kubernetes']
 
   - name: Copiar /etc/hosts.txt
@@ -60,7 +60,7 @@
     become_user: root  
     ansible.builtin.copy:
       src: /home/user1/github/05_createVM/ansible/01_deploy_base/resources/hosts
-      #src: ~/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/ansible/01_deploy_base/resources/hosts
+      #src: /home/pablo/documentos/informatica/linux/certificaciones/05_createVM/ansible/01_deploy_base/resources/hosts
       dest: /etc/
       owner: root
       group: root
