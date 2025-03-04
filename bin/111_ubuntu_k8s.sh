@@ -216,7 +216,7 @@ sudo virt-install \
 --os-type=${OS_TYPE} \
 --os-variant=${OS_VARIANT} \
 --disk ${DIR_POOL}${VOL_JUMPBOX},device=disk,bus=virtio \
---network network=default,mac=52:54:00:9a:cc:211 \
+--network network=default,mac=52:54:00:9a:ca:21 \
 --vnc --autoconsole graphical \
 --cloud-init user-data=${USER_DATA_J1},meta-data=${META_DATA_J1},network-config=${NET_DATA_J1}
 
