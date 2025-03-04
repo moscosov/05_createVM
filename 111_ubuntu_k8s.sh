@@ -28,6 +28,7 @@ WORKER6=10_worker6_hard_lab
 ETCDM1=10_etcd_master1_hard_lab
 ETCDM2=10_etcd_master2_hard_lab
 ETCDM3=10_etcd_master3_hard_lab
+JUMPBOX=10_jumpbox_hard_lab
 
 
 #PATHS Storage
@@ -52,11 +53,12 @@ VOL_WORKER6=10_worker6_hard.qcow2
 VOL_ETCDM1=10_etcd_master1_hard.qcow2
 VOL_ETCDM2=10_etcd_master2_hard.qcow2
 VOL_ETCDM3=10_etcd_master3_hard.qcow2
+VOL_JUMPBOX=10_jumpbox_hard_lab.qcow2
 
 # Master Config files
-USER_DATA_M1=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/user-data.yaml
-NET_DATA_M1=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/network-config.yaml
-META_DATA_M1=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/meta-data.yaml
+USER_DATA_M1=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/master1-user-data.yaml
+NET_DATA_M1=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/master1-network-config.yaml
+META_DATA_M1=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/master1-meta-data.yaml
 
 USER_DATA_M2=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/master2-user-data.yaml
 NET_DATA_M2=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/master2-network-config.yaml
@@ -104,6 +106,11 @@ USER_DATA_E3=/home/pablo/documentos/informatica/linux/certificaciones/05_createV
 NET_DATA_E3=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/etcdm3-network-config.yaml
 META_DATA_E3=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/etcdm3-meta-data.yaml
 
+# jumbox Config files
+USER_DATA_J1=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/jumpbox1-user-data.yaml
+NET_DATA_J1=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/jumpbox1-network-config.yaml
+META_DATA_J1=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/jumpbox1-meta-data.yaml
+
 echo -e "${GREEN} Poweroff VM\n"
 
 # Shutdown VM
@@ -119,6 +126,7 @@ sudo /usr/bin/virsh destroy --domain $WORKER6
 sudo /usr/bin/virsh destroy --domain $ETCDM1 
 sudo /usr/bin/virsh destroy --domain $ETCDM2 
 sudo /usr/bin/virsh destroy --domain $ETCDM3 
+sudo /usr/bin/virsh destroy --domain $JUMPBOX
 
 sleep 2
 
@@ -136,7 +144,8 @@ sudo /usr/bin/virsh undefine --domain $WORKER5
 sudo /usr/bin/virsh undefine --domain $WORKER6 
 sudo /usr/bin/virsh undefine --domain $ETCDM1 
 sudo /usr/bin/virsh undefine --domain $ETCDM2 
-sudo /usr/bin/virsh undefine --domain $ETCDM3 
+sudo /usr/bin/virsh undefine --domain $ETCDM3
+sudo /usr/bin/virsh undefine --domain $JUMPBOX
 
 sleep 2
 
@@ -155,41 +164,63 @@ sudo /usr/bin/virsh vol-delete --pool $LIVB_POOL --vol $VOL_WORKER6
 sudo /usr/bin/virsh vol-delete --pool $LIVB_POOL --vol $VOL_ETCDM1
 sudo /usr/bin/virsh vol-delete --pool $LIVB_POOL --vol $VOL_ETCDM2
 sudo /usr/bin/virsh vol-delete --pool $LIVB_POOL --vol $VOL_ETCDM3
+sudo /usr/bin/virsh vol-delete --pool $LIVB_POOL --vol $VOL_JUMPBOX
 
 sleep 2
 
 echo -e "${RED} Create storage to VM\n"
 # Create master storage
-sudo qemu-img create -b $IMAGE -f qcow2 -F qcow2 ${DIR_POOL}${VOL_MASTER1} $NODEDS
-sudo chown pablo:users ${DIR_POOL}${VOL_MASTER1}
-sudo qemu-img create -b $IMAGE -f qcow2 -F qcow2 ${DIR_POOL}${VOL_MASTER2} $NODEDS
-sudo chown pablo:users ${DIR_POOL}${VOL_MASTER2}
-sudo qemu-img create -b $IMAGE -f qcow2 -F qcow2 ${DIR_POOL}${VOL_MASTER3} $NODEDS
-sudo chown pablo:users ${DIR_POOL}${VOL_MASTER3}
+qemu-img create -b $IMAGE -f qcow2 -F qcow2 ${DIR_POOL}${VOL_MASTER1} $NODEDS
+#chown pablo:users ${DIR_POOL}${VOL_MASTER1}
+qemu-img create -b $IMAGE -f qcow2 -F qcow2 ${DIR_POOL}${VOL_MASTER2} $NODEDS
+#chown pablo:users ${DIR_POOL}${VOL_MASTER2}
+qemu-img create -b $IMAGE -f qcow2 -F qcow2 ${DIR_POOL}${VOL_MASTER3} $NODEDS
+#chown pablo:users ${DIR_POOL}${VOL_MASTER3}
 
 # Create worker storage
-sudo qemu-img create -b $IMAGE -f qcow2 -F qcow2 ${DIR_POOL}${VOL_WORKER1} $NODEDS
-sudo chown pablo:users ${DIR_POOL}${VOL_WORKER1}
-sudo qemu-img create -b $IMAGE -f qcow2 -F qcow2 ${DIR_POOL}${VOL_WORKER2} $NODEDS
-sudo chown pablo:users ${DIR_POOL}${VOL_WORKER2}
-sudo qemu-img create -b $IMAGE -f qcow2 -F qcow2 ${DIR_POOL}${VOL_WORKER3} $NODEDS
-sudo chown pablo:users ${DIR_POOL}${VOL_WORKER3}
-sudo qemu-img create -b $IMAGE -f qcow2 -F qcow2 ${DIR_POOL}${VOL_WORKER4} $NODEDS
-sudo chown pablo:users ${DIR_POOL}${VOL_WORKER4}
-sudo qemu-img create -b $IMAGE -f qcow2 -F qcow2 ${DIR_POOL}${VOL_WORKER5} $NODEDS
-sudo chown pablo:users ${DIR_POOL}${VOL_WORKER5}
-sudo qemu-img create -b $IMAGE -f qcow2 -F qcow2 ${DIR_POOL}${VOL_WORKER6} $NODEDS
-sudo chown pablo:users ${DIR_POOL}${VOL_WORKER6}
+qemu-img create -b $IMAGE -f qcow2 -F qcow2 ${DIR_POOL}${VOL_WORKER1} $NODEDS
+#chown pablo:users ${DIR_POOL}${VOL_WORKER1}
+qemu-img create -b $IMAGE -f qcow2 -F qcow2 ${DIR_POOL}${VOL_WORKER2} $NODEDS
+#chown pablo:users ${DIR_POOL}${VOL_WORKER2}
+qemu-img create -b $IMAGE -f qcow2 -F qcow2 ${DIR_POOL}${VOL_WORKER3} $NODEDS
+#chown pablo:users ${DIR_POOL}${VOL_WORKER3}
+qemu-img create -b $IMAGE -f qcow2 -F qcow2 ${DIR_POOL}${VOL_WORKER4} $NODEDS
+#chown pablo:users ${DIR_POOL}${VOL_WORKER4}
+qemu-img create -b $IMAGE -f qcow2 -F qcow2 ${DIR_POOL}${VOL_WORKER5} $NODEDS
+#chown pablo:users ${DIR_POOL}${VOL_WORKER5}
+qemu-img create -b $IMAGE -f qcow2 -F qcow2 ${DIR_POOL}${VOL_WORKER6} $NODEDS
+#chown pablo:users ${DIR_POOL}${VOL_WORKER6}
 
 # Create etcd master storage
-sudo qemu-img create -b $IMAGE -f qcow2 -F qcow2 ${DIR_POOL}${VOL_ETCDM1} $ETCDDS
-sudo chown pablo:users ${DIR_POOL}${VOL_ETCDM1}
-sudo qemu-img create -b $IMAGE -f qcow2 -F qcow2 ${DIR_POOL}${VOL_ETCDM2} $ETCDDS
-sudo chown pablo:users ${DIR_POOL}${VOL_ETCDM2}
-sudo qemu-img create -b $IMAGE -f qcow2 -F qcow2 ${DIR_POOL}${VOL_ETCDM3} $ETCDDS
-sudo chown pablo:users ${DIR_POOL}${VOL_ETCDM3}
+qemu-img create -b $IMAGE -f qcow2 -F qcow2 ${DIR_POOL}${VOL_ETCDM1} $ETCDDS
+#chown pablo:users ${DIR_POOL}${VOL_ETCDM1}
+qemu-img create -b $IMAGE -f qcow2 -F qcow2 ${DIR_POOL}${VOL_ETCDM2} $ETCDDS
+#chown pablo:users ${DIR_POOL}${VOL_ETCDM2}
+qemu-img create -b $IMAGE -f qcow2 -F qcow2 ${DIR_POOL}${VOL_ETCDM3} $ETCDDS
+#chown pablo:users ${DIR_POOL}${VOL_ETCDM3}
+
+# Create jumpbox storage
+qemu-img create -b $IMAGE -f qcow2 -F qcow2 ${DIR_POOL}${VOL_JUMPBOX} $NODEDS
+
 
 sleep 2
+
+date +%D-%T
+echo -e
+echo -e "${GREEN} Install ${JUMPBOX}\n"
+
+sudo virt-install \
+-n ${JUMPBOX} \
+-r ${MEM_SIZE} \
+--vcpus ${VCPUS} \
+--os-type=${OS_TYPE} \
+--os-variant=${OS_VARIANT} \
+--disk ${DIR_POOL}${VOL_JUMPBOX},device=disk,bus=virtio \
+--network network=default,mac=52:54:00:9a:cc:211 \
+--vnc --autoconsole graphical \
+--cloud-init user-data=${USER_DATA_J1},meta-data=${META_DATA_J1},network-config=${NET_DATA_J1}
+
+sleep 10
 
 date +%D-%T
 echo -e
@@ -202,7 +233,7 @@ sudo virt-install \
 --os-type=${OS_TYPE} \
 --os-variant=${OS_VARIANT} \
 --disk ${DIR_POOL}${VOL_MASTER1},device=disk,bus=virtio \
---network network=default,mac=52:54:00:9a:cc:41 \
+--network network=default,mac=52:54:00:9a:cc:71 \
 --vnc --autoconsole graphical \
 --cloud-init user-data=${USER_DATA_M1},meta-data=${META_DATA_M1},network-config=${NET_DATA_M1}
 
@@ -219,7 +250,7 @@ sudo virt-install \
 --os-type=${OS_TYPE} \
 --os-variant=${OS_VARIANT} \
 --disk ${DIR_POOL}${VOL_MASTER2},device=disk,bus=virtio \
---network network=default,mac=52:54:00:9a:cc:42 \
+--network network=default,mac=52:54:00:9a:cc:72 \
 --vnc --autoconsole graphical \
 --cloud-init user-data=${USER_DATA_M2},meta-data=${META_DATA_M2},network-config=${NET_DATA_M2}
 
@@ -236,7 +267,7 @@ sudo virt-install \
 --os-type=${OS_TYPE} \
 --os-variant=${OS_VARIANT} \
 --disk ${DIR_POOL}${VOL_MASTER3},device=disk,bus=virtio \
---network network=default,mac=52:54:00:9a:cc:43 \
+--network network=default,mac=52:54:00:9a:cc:73 \
 --vnc --autoconsole graphical \
 --cloud-init user-data=${USER_DATA_M3},meta-data=${META_DATA_M3},network-config=${NET_DATA_M3}
 
