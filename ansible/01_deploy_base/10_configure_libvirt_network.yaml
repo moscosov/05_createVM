@@ -1,11 +1,11 @@
 ---
-#- name: Configurar Libvirt Network in Host
-#  hosts: base
-#  become: yes
-#  become_user: root
-#  gather_facts: true
+- name: Configurar Libvirt Network in Host
+  hosts: base
+  become: yes
+  become_user: root
+  gather_facts: true
 
-#  tasks:
+  tasks:
   
   - name: Hacer un ping
     become: yes
@@ -28,6 +28,8 @@
       sudo virsh net-update default add-last ip-dhcp-host '<host mac="52:54:00:9a:cc:31"  ip="192.168.122.131"/>' --live --config --parent-index 0
       sudo virsh net-update default add-last ip-dhcp-host '<host mac="52:54:00:9a:cc:32"  ip="192.168.122.132"/>' --live --config --parent-index 0
       sudo virsh net-update default add-last ip-dhcp-host '<host mac="52:54:00:9a:cc:33"  ip="192.168.122.133"/>' --live --config --parent-index 0
+      sudo virsh net-update default add-last ip-dhcp-host '<host mac="52:54:00:9a:ca:21"  ip="192.168.122.211"/>' --live --config --parent-index 0
+      sudo virsh net-update default add  dns-host  '<host ip="192.168.122.211"><hostname>10jumpbox1.hard.lab</hostname></host>' --live --config
       sudo virsh net-update default add  dns-host  '<host ip="192.168.122.171"><hostname>10master1.hard.lab</hostname></host>' --live --config
       sudo virsh net-update default add  dns-host  '<host ip="192.168.122.172"><hostname>10master2.hard.lab</hostname></host>' --live --config
       sudo virsh net-update default add  dns-host  '<host ip="192.168.122.173"><hostname>10master3.hard.lab</hostname></host>' --live --config

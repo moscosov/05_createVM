@@ -1,10 +1,10 @@
 ---
-#- name: Instalar herramientas
-  #hosts: 258_hosts
-    #become: true
-    #become_user: root  
+- name: Instalar herramientas
+  hosts: kubernetes
+  become: true
+  become_user: root  
   
-  #tasks: 
+  tasks: 
 
   - name: Hacer un ping
     become: yes

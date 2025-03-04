@@ -1,12 +1,12 @@
 ---
-- name: Install Base System
-  hosts: base, kubernetes
+#- name: Install Base System
+#  hosts: base, kubernetes
     
-  tasks:
+#  tasks:
   
-  - name: Configure base libvirt dns
-    include_tasks: 10_configure_libvirt_network.yaml
+#  - name: Configure base libvirt dns
+#    include_tasks: 10_configure_libvirt_network.yaml
 
-  - name: Configure kubernetes master, workers and etcd servers
-    include_tasks: 20_instalar_herramientas.yaml
+#  - name: Configure kubernetes master, workers and etcd servers
+#    include_tasks: 20_instalar_herramientas.yaml
 
