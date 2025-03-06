@@ -6,7 +6,7 @@
   
   tasks: 
 
-  - name: generate SSH key "{{ssh_key_filename}}"
+  - name: generate SSH key
     openssh_keypair:
       path: "~/.ssh/"
       type: ed25519
