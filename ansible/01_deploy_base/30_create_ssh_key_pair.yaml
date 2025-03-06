@@ -8,7 +8,7 @@
   
   - name: Set timezone to America/Santiago
     community.general.timezone:
-      rtc: local
+      rtc: UTC
       name: America/Santiago
 
   - name: generate SSH key
