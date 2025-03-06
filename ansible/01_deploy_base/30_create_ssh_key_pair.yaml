@@ -12,9 +12,29 @@
       name: America/Santiago
 
   - name: generate SSH key
-    openssh_keypair:
+    community.crypto.openssh_keypair:
       path: "~/.ssh/id_ed25519"
       type: ed25519
       size: 4096
       state: present
       force: yes
+
+  - name: Copiar machine.txt
+    ansible.builtin.copy:
+      src: /home/user1/github/05_createVM/ansible/01_deploy_base/resources/machine.txt
+      #src: /home/pablo/documentos/informatica/linux/certificaciones/05_createVM/ansible/01_deploy_base/resources/machine.txt
+      dest: /root/
+      owner: root
+      group: root
+
+  - name: Copiar ssh_copy_key.sh
+    ansible.builtin.copy:
+      src: /home/user1/github/05_createVM/ansible/01_deploy_base/resources/ssh_copy_key.sh
+      #src: /home/pablo/documentos/informatica/linux/certificaciones/05_createVM/ansible/01_deploy_base/resources/ssh_copy_key.sh
+      dest: /root/
+      owner: root
+      group: root
+      mode: "0555"
+      
+      
+      

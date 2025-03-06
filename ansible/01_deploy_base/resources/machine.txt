@@ -1,0 +1,13 @@
+IPV4_ADDRESS     FQDN                 HOSTNAME   POD_SUBNET         SVC_SUBNET
+192.168.122.131  10etcdm1.hard.lab    10etcdm1   10.244.0.0/16      10.96.0.0/16
+192.168.122.132  10etcdm2.hard.lab    10etcdm2   10.244.0.0/16      10.96.0.0/16
+192.168.122.133  10etcdm3.hard.lab    10etcdm3   10.244.0.0/16      10.96.0.0/16
+192.168.122.151  10worker1.hard.lab   10worker1  10.244.0.0/16      10.96.0.0/16
+192.168.122.152  10worker2.hard.lab   10worker2  10.244.0.0/16      10.96.0.0/16
+192.168.122.153  10worker3.hard.lab   10worker3  10.244.0.0/16      10.96.0.0/16
+192.168.122.154  10worker4.hard.lab   10worker4  10.244.0.0/16      10.96.0.0/16
+192.168.122.155  10worker5.hard.lab   10worker5  10.244.0.0/16      10.96.0.0/16
+192.168.122.156  10worker6.hard.lab   10worker6  10.244.0.0/16      10.96.0.0/16
+192.168.122.171  10master1.hard.lab   10master1  10.244.0.0/16      10.96.0.0/16
+192.168.122.172  10master2.hard.lab   10master2  10.244.0.0/16      10.96.0.0/16
+192.168.122.173  10master3.hard.lab   10master3  10.244.0.0/16      10.96.0.0/16
