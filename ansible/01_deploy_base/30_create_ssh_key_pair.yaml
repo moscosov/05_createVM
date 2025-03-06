@@ -1,0 +1,15 @@
+---
+- name: Instalar herramientas
+  hosts: kubernetes
+  become: true
+  become_user: root  
+  
+  tasks: 
+
+  - name: generate SSH key "{{ssh_key_filename}}"
+    openssh_keypair:
+      path: "~/.ssh/"
+      type: ed25519
+      size: 4096
+      state: present
+      force: yes
