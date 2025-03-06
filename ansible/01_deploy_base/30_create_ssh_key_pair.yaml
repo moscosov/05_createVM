@@ -8,7 +8,7 @@
 
   - name: generate SSH key
     openssh_keypair:
-      path: "~/.ssh/"
+      path: "~/.ssh/id_ed25519"
       type: ed25519
       size: 4096
       state: present
