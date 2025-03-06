@@ -36,5 +36,7 @@
       group: root
       mode: "0555"
       
-      
+  - name: Run ssh_copy_key.sh
+    ansible.builtin.script:
+      cmd: /root/ssh_copy_key.sh
       
