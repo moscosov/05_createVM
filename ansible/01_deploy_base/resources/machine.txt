@@ -1,4 +1,3 @@
-IPV4_ADDRESS     FQDN                 HOSTNAME   POD_SUBNET         SVC_SUBNET
 192.168.122.131  10etcdm1.hard.lab    10etcdm1   10.244.0.0/16      10.96.0.0/16
 192.168.122.132  10etcdm2.hard.lab    10etcdm2   10.244.0.0/16      10.96.0.0/16
 192.168.122.133  10etcdm3.hard.lab    10etcdm3   10.244.0.0/16      10.96.0.0/16
