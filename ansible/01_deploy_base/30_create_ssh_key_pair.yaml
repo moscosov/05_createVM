@@ -39,5 +39,5 @@
   - name: Run ssh_copy_key.sh
     ansible.builtin.script:
       cmd: /root/ssh_copy_key.sh
-    delegate_to: localhost  
-      
+    #delegate_to: localhost  
+    when: inventory_hostname in groups['kubernetes']  
