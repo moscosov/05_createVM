@@ -36,8 +36,15 @@
       group: root
       mode: "0555"
       
-  - name: Run ssh_copy_key.sh
-    ansible.builtin.script:
-      cmd: /root/ssh_copy_key.sh
-    #delegate_to: localhost  
-    when: inventory_hostname in groups['kubernetes']  
+  #- name: Run ssh_copy_key.sh
+  #  ansible.builtin.script:
+  #    cmd: /root/ssh_copy_key.sh 
+  #  delegate_to: localhost  
+    #when: inventory_hostname in groups['kubernetes']  
+  - name: Run ssh copy-id
+    ansible.builtin.shell: |
+    while read IP FQDN HOST POD_SUBNET SVC_SUBNET; do 
+    ssh-copy-id -o StrictHostKeyChecking=no root@${IP}
+    done < /root/machine.txt
+    exit 0
+  delegate_to: localhost
