@@ -1,10 +1,15 @@
 ---
-- name: Instalar herramientas
+- name: setear timezone y generar llaves ssh
   hosts: kubernetes
   become: true
   become_user: root  
   
   tasks: 
+  
+  - name: Set timezone to America/Santiago
+    community.general.timezone:
+      rtc: local
+      name: America/Santiago
 
   - name: generate SSH key
     openssh_keypair:
