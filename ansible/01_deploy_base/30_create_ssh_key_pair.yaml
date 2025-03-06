@@ -43,8 +43,8 @@
     #when: inventory_hostname in groups['kubernetes']  
   - name: Run ssh copy-id
     ansible.builtin.shell: |
-    while read IP FQDN HOST POD_SUBNET SVC_SUBNET; do 
-    ssh-copy-id -o StrictHostKeyChecking=no root@${IP}
-    done < /root/machine.txt
-    exit 0
+      while read IP FQDN HOST POD_SUBNET SVC_SUBNET; 
+      do ssh-copy-id -o StrictHostKeyChecking=no root@${IP} ;
+      done < /root/machine.txt
+      exit 0
   delegate_to: localhost
