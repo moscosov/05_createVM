@@ -47,4 +47,4 @@
       do ssh-copy-id -o StrictHostKeyChecking=no root@${IP} ;
       done < /root/machine.txt
       exit 0
-  delegate_to: localhost
+    delegate_to: localhost
