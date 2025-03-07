@@ -1,12 +1,12 @@
 ---
-- name: setear timezone y generar llaves ssh
-  hosts: kubernetes
-  become: true
-  become_user: root  
-  vars:
-    - private: "/root/.ssh/id_ed2551"
+#- name: setear timezone, generar y distribuir llaves ssh
+#  hosts: kubernetes
+#  become: true
+#  become_user: root  
+#  vars:
+#    - private: "/root/.ssh/id_ed2551"
   
-  tasks: 
+#  tasks: 
   
   - name: Set timezone to America/Santiago
     community.general.timezone:
@@ -30,37 +30,16 @@
       owner: root
       group: root
 
-  - name: Copiar ssh_copy_key.sh
-    ansible.builtin.copy:
-      src: /home/user1/github/05_createVM/ansible/01_deploy_base/resources/ssh_copy_key.sh
-      #src: /home/pablo/documentos/informatica/linux/certificaciones/05_createVM/ansible/01_deploy_base/resources/ssh_copy_key.sh
-      dest: /root/
-      owner: root
-      group: root
-      mode: "0555"
-      
   - name: ssh agent
-    ansible.builtin.shell: 
+    ansible.builtin.shell: |
       eval "$(ssh-agent -s)"
+      ssh-add
     delegate_to: "{{inventory_hostname}}"
-  
-      #  - name: ssh agent
-      #    ansible.builtin.shell: ssh-add
-      #    delegate_to: "{{inventory_hostname}}"
-
-      #  - name: Run ssh_copy_key.sh
-      #    ansible.builtin.script:
-      #      chdir: /root/
-      #      #cmd: /home/user1/github/05_createVM/ansible/01_deploy_base/resources/ssh_copy_key.sh /home/user1/github/05_createVM/ansible/01_deploy_base/resources/machine.txt
-      #      cmd: ssh_copy_key.sh machine.txt
-      #        #remote_src: /root
-      #    delegate_to: localhost  
-    #when: inventory_hostname in groups['kubernetes']  
   
   - name: Run ssh copy-id
     ansible.builtin.shell: |
       while read IP FQDN HOST POD_SUBNET SVC_SUBNET; 
-      do sshpass -p password ssh-copy-id -o StrictHostKeyChecking=no root@${IP};
+      do sshpass -p password ssh-copy-id -o StrictHostKeyChecking=accept-new root@${IP};
       done < /root/machine.txt
     args:
       chdir: /root/  
