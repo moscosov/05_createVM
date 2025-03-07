@@ -23,6 +23,7 @@
         - openssl
         - bash-completion
         - elinks
+        - sshpass  
       state: present
     when: inventory_hostname in groups['kubernetes']   
   

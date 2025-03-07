@@ -3,6 +3,8 @@
   hosts: kubernetes
   become: true
   become_user: root  
+  vars:
+    - private: "/root/.ssh/id_ed2551"
   
   tasks: 
   
@@ -18,34 +20,48 @@
       size: 4096
       state: present
       force: yes
+      mode: 0600  
 
-  - name: Copiar machine.txt
-    ansible.builtin.copy:
-      src: /home/user1/github/05_createVM/ansible/01_deploy_base/resources/machine.txt
+        #  - name: Copiar machine.txt
+        #ansible.builtin.copy:
+        #src: /home/user1/github/05_createVM/ansible/01_deploy_base/resources/machine.txt
       #src: /home/pablo/documentos/informatica/linux/certificaciones/05_createVM/ansible/01_deploy_base/resources/machine.txt
-      dest: /root/
-      owner: root
-      group: root
+      # dest: /root/
+      #owner: root
+      #group: root
 
-  - name: Copiar ssh_copy_key.sh
-    ansible.builtin.copy:
-      src: /home/user1/github/05_createVM/ansible/01_deploy_base/resources/ssh_copy_key.sh
+        #- name: Copiar ssh_copy_key.sh
+        #ansible.builtin.copy:
+        #src: /home/user1/github/05_createVM/ansible/01_deploy_base/resources/ssh_copy_key.sh
       #src: /home/pablo/documentos/informatica/linux/certificaciones/05_createVM/ansible/01_deploy_base/resources/ssh_copy_key.sh
-      dest: /root/
-      owner: root
-      group: root
-      mode: "0555"
-      
-  - name: Run ssh_copy_key.sh
-    ansible.builtin.script:
-      cmd: /root/ssh_copy_key.sh /root/machine.txt
-    delegate_to: localhost  
+      #dest: /root/
+      #owner: root
+      #group: root
+      #mode: "0555"
+      #
+  - name: ssh agent
+    ansible.builtin.shell: 
+      eval "$(ssh-agent -s)"
+    delegate_to: localhost
+  
+      #  - name: ssh agent
+      #    ansible.builtin.shell: ssh-add {{private}}
+      #    delegate_to: localhost
+
+      #  - name: Run ssh_copy_key.sh
+      #    ansible.builtin.script:
+      #      chdir: /root/
+      #      #cmd: /home/user1/github/05_createVM/ansible/01_deploy_base/resources/ssh_copy_key.sh /home/user1/github/05_createVM/ansible/01_deploy_base/resources/machine.txt
+      #      cmd: ssh_copy_key.sh machine.txt
+      #        #remote_src: /root
+      #    delegate_to: localhost  
     #when: inventory_hostname in groups['kubernetes']  
-  #- name: Run ssh copy-id
-  #  ansible.builtin.shell: |
-  #    while read IP FQDN HOST POD_SUBNET SVC_SUBNET; 
-  #    do ssh-copy-id -o StrictHostKeyChecking=no root@${IP};
-  #    done < /root/machine.txt
-  #  args:
-  #    chdir: /root/  
-  #  delegate_to: localhost
+  
+  - name: Run ssh copy-id
+    ansible.builtin.shell: |
+      while read IP FQDN HOST POD_SUBNET SVC_SUBNET; 
+      do sshpass -p password ssh-copy-id -o StrictHostKeyChecking=no root@${IP};
+      done < /root/machine.txt
+    args:
+      chdir: /root/  
+    delegate_to: "{{ inventory_hostname }}"

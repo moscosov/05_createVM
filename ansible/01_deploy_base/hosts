@@ -14,3 +14,4 @@ mars.lab.local ansible_ssh_user=pablo
 10master1.hard.lab  ansible_ssh_user=root
 10master2.hard.lab  ansible_ssh_user=root
 10master3.hard.lab  ansible_ssh_user=root
+10jumpbox1.hard.lab ansible_ssh_user=root
