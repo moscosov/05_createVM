@@ -1,12 +1,14 @@
 ---
-#- name: Install Base System
-#  hosts: base, kubernetes
+- name: Install Base System
+  hosts: kubernetes
+  become: true
+  become_user: root   
     
-#  tasks:
+  tasks:
   
-#  - name: Configure base libvirt dns
-#    include_tasks: 10_configure_libvirt_network.yaml
+    - name: Configure base ubuntu k8s
+      include_tasks: 20_instalar_herramientas.yaml
 
-#  - name: Configure kubernetes master, workers and etcd servers
-#    include_tasks: 20_instalar_herramientas.yaml
+    - name: Configure systemd and ssh key
+      include_tasks: 30_create_ssh_key_pair.yaml
 

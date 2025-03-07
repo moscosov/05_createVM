@@ -1,10 +1,10 @@
 ---
-- name: Instalar herramientas
-  hosts: kubernetes
-  become: true
-  become_user: root  
+#- name: Instalar herramientas
+#  hosts: kubernetes
+#  become: true
+#  become_user: root  
   
-  tasks: 
+#  tasks: 
 
   - name: Hacer un ping
     become: yes
@@ -25,7 +25,7 @@
         - elinks
         - sshpass  
       state: present
-    when: inventory_hostname in groups['kubernetes']   
+        ##when: inventory_hostname in groups['kubernetes']   
   
   - name: Example clone of a single branch
     become: true
@@ -35,7 +35,7 @@
       dest: /root/kubernetes-the-hard-way
       single_branch: yes
       version: master        
-    when: inventory_hostname in groups['kubernetes']
+        ##when: inventory_hostname in groups['kubernetes']
     
   - name: Copiar download.txt
     become: true
@@ -46,7 +46,7 @@
       dest: /root/kubernetes-the-hard-way
       owner: root
       group: root
-    when: inventory_hostname in groups['kubernetes']
+    #when: inventory_hostname in groups['kubernetes']
     
   - name: Descargar binarios k8s
     become: true
@@ -54,7 +54,7 @@
     ansible.builtin.shell: wget -q --show-progress --https-only --timestamping -P downloads -i downloads.txt   
     args:
       chdir: /root/kubernetes-the-hard-way
-    when: inventory_hostname in groups['kubernetes']
+    #when: inventory_hostname in groups['kubernetes']
 
   - name: Copiar /etc/hosts.txt
     become: true
@@ -65,4 +65,4 @@
       dest: /etc/
       owner: root
       group: root
-    when: inventory_hostname in groups['kubernetes']    
+    #when: inventory_hostname in groups['kubernetes']    
