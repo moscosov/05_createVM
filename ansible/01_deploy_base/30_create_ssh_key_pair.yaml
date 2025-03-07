@@ -13,6 +13,11 @@
       rtc: UTC
       name: America/Santiago
 
+  - name: Restart kubelet
+    ansible.builtin.service:
+      name: sshd
+      state: restarted        
+
   - name: generate SSH key
     community.crypto.openssh_keypair:
       path: "~/.ssh/id_ed25519"
