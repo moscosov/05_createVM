@@ -22,31 +22,31 @@
       force: yes
       mode: 0600  
 
-        #  - name: Copiar machine.txt
-        #ansible.builtin.copy:
-        #src: /home/user1/github/05_createVM/ansible/01_deploy_base/resources/machine.txt
+  - name: Copiar machine.txt
+    ansible.builtin.copy:
+      src: /home/user1/github/05_createVM/ansible/01_deploy_base/resources/machine.txt
       #src: /home/pablo/documentos/informatica/linux/certificaciones/05_createVM/ansible/01_deploy_base/resources/machine.txt
-      # dest: /root/
-      #owner: root
-      #group: root
+       dest: /root/
+      owner: root
+      group: root
 
-        #- name: Copiar ssh_copy_key.sh
-        #ansible.builtin.copy:
-        #src: /home/user1/github/05_createVM/ansible/01_deploy_base/resources/ssh_copy_key.sh
-      #src: /home/pablo/documentos/informatica/linux/certificaciones/05_createVM/ansible/01_deploy_base/resources/ssh_copy_key.sh
-      #dest: /root/
-      #owner: root
-      #group: root
-      #mode: "0555"
-      #
+ - name: Copiar ssh_copy_key.sh
+   ansible.builtin.copy:
+     src: /home/user1/github/05_createVM/ansible/01_deploy_base/resources/ssh_copy_key.sh
+     src: /home/pablo/documentos/informatica/linux/certificaciones/05_createVM/ansible/01_deploy_base/resources/ssh_copy_key.sh
+     dest: /root/
+     owner: root
+     group: root
+     mode: "0555"
+     
   - name: ssh agent
     ansible.builtin.shell: 
       eval "$(ssh-agent -s)"
-    delegate_to: localhost
+    delegate_to: "{{inventory_hostname}}"
   
-      #  - name: ssh agent
-      #    ansible.builtin.shell: ssh-add {{private}}
-      #    delegate_to: localhost
+  - name: ssh agent
+    ansible.builtin.shell: ssh-add
+    delegate_to: "{{inventory_hostname}}"
 
       #  - name: Run ssh_copy_key.sh
       #    ansible.builtin.script:
