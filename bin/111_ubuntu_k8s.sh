@@ -60,60 +60,60 @@ VOL_ETCDM3=10_etcd_master3_hard.qcow2
 VOL_JUMPBOX=10_jumpbox_hard_lab.qcow2
 
 # Master Config files
-USER_DATA_M1=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/master1-user-data.yaml
-NET_DATA_M1=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/master1-network-config.yaml
-META_DATA_M1=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/master1-meta-data.yaml
+USER_DATA_M1=/home/pablo/github/05_createVM/cloud-init-files/ubuntu_server/master1-user-data.yaml
+NET_DATA_M1=/home/pablo/github/05_createVM/cloud-init-files/ubuntu_server/master1-network-config.yaml
+META_DATA_M1=/home/pablo/github/05_createVM/cloud-init-files/ubuntu_server/master1-meta-data.yaml
 
-USER_DATA_M2=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/master2-user-data.yaml
-NET_DATA_M2=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/master2-network-config.yaml
-META_DATA_M2=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/master2-meta-data.yaml
+USER_DATA_M2=/home/pablo/github/05_createVM/cloud-init-files/ubuntu_server/master2-user-data.yaml
+NET_DATA_M2=/home/pablo/github/05_createVM/cloud-init-files/ubuntu_server/master2-network-config.yaml
+META_DATA_M2=/home/pablo/github/05_createVM/cloud-init-files/ubuntu_server/master2-meta-data.yaml
 
-USER_DATA_M3=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/master3-user-data.yaml
-NET_DATA_M3=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/master3-network-config.yaml
-META_DATA_M3=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/master3-meta-data.yaml
+USER_DATA_M3=/home/pablo/github/05_createVM/cloud-init-files/ubuntu_server/master3-user-data.yaml
+NET_DATA_M3=/home/pablo/github/05_createVM/cloud-init-files/ubuntu_server/master3-network-config.yaml
+META_DATA_M3=/home/pablo/github/05_createVM/cloud-init-files/ubuntu_server/master3-meta-data.yaml
 
 # Master Config files
-USER_DATA_W1=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/worker1-user-data.yaml
-NET_DATA_W1=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/worker1-network-config.yaml
-META_DATA_W1=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/worker1-meta-data.yaml
+USER_DATA_W1=/home/pablo/github/05_createVM/cloud-init-files/ubuntu_server/worker1-user-data.yaml
+NET_DATA_W1=/home/pablo/github/05_createVM/cloud-init-files/ubuntu_server/worker1-network-config.yaml
+META_DATA_W1=/home/pablo/github/05_createVM/cloud-init-files/ubuntu_server/worker1-meta-data.yaml
 
-USER_DATA_W2=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/worker2-user-data.yaml
-NET_DATA_W2=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/worker2-network-config.yaml
-META_DATA_W2=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/worker2-meta-data.yaml
+USER_DATA_W2=/home/pablo/github/05_createVM/cloud-init-files/ubuntu_server/worker2-user-data.yaml
+NET_DATA_W2=/home/pablo/github/05_createVM/cloud-init-files/ubuntu_server/worker2-network-config.yaml
+META_DATA_W2=/home/pablo/github/05_createVM/cloud-init-files/ubuntu_server/worker2-meta-data.yaml
 
-USER_DATA_W3=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/worker3-user-data.yaml
-NET_DATA_W3=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/worker3-network-config.yaml
-META_DATA_W3=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/worker3-meta-data.yaml
+USER_DATA_W3=/home/pablo/github/05_createVM/cloud-init-files/ubuntu_server/worker3-user-data.yaml
+NET_DATA_W3=/home/pablo/github/05_createVM/cloud-init-files/ubuntu_server/worker3-network-config.yaml
+META_DATA_W3=/home/pablo/github/05_createVM/cloud-init-files/ubuntu_server/worker3-meta-data.yaml
 
-USER_DATA_W4=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/worker4-user-data.yaml
-NET_DATA_W4=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/worker4-network-config.yaml
-META_DATA_W4=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/worker4-meta-data.yaml
+USER_DATA_W4=/home/pablo/github/05_createVM/cloud-init-files/ubuntu_server/worker4-user-data.yaml
+NET_DATA_W4=/home/pablo/github/05_createVM/cloud-init-files/ubuntu_server/worker4-network-config.yaml
+META_DATA_W4=/home/pablo/github/05_createVM/cloud-init-files/ubuntu_server/worker4-meta-data.yaml
 
-USER_DATA_W5=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/worker5-user-data.yaml
-NET_DATA_W5=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/worker5-network-config.yaml
-META_DATA_W5=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/worker5-meta-data.yaml
+USER_DATA_W5=/home/pablo/github/05_createVM/cloud-init-files/ubuntu_server/worker5-user-data.yaml
+NET_DATA_W5=/home/pablo/github/05_createVM/cloud-init-files/ubuntu_server/worker5-network-config.yaml
+META_DATA_W5=/home/pablo/github/05_createVM/cloud-init-files/ubuntu_server/worker5-meta-data.yaml
 
-USER_DATA_W6=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/worker6-user-data.yaml
-NET_DATA_W6=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/worker6-network-config.yaml
-META_DATA_W6=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/worker6-meta-data.yaml
+USER_DATA_W6=/home/pablo/github/05_createVM/cloud-init-files/ubuntu_server/worker6-user-data.yaml
+NET_DATA_W6=/home/pablo/github/05_createVM/cloud-init-files/ubuntu_server/worker6-network-config.yaml
+META_DATA_W6=/home/pablo/github/05_createVM/cloud-init-files/ubuntu_server/worker6-meta-data.yaml
 
 # etcd masters Config files
-USER_DATA_E1=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/etcdm1-user-data.yaml
-NET_DATA_E1=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/etcdm1-network-config.yaml
-META_DATA_E1=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/etcdm1-meta-data.yaml
+USER_DATA_E1=/home/pablo/github/05_createVM/cloud-init-files/ubuntu_server/etcdm1-user-data.yaml
+NET_DATA_E1=/home/pablo/github/05_createVM/cloud-init-files/ubuntu_server/etcdm1-network-config.yaml
+META_DATA_E1=/home/pablo/github/05_createVM/cloud-init-files/ubuntu_server/etcdm1-meta-data.yaml
 
-USER_DATA_E2=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/etcdm2-user-data.yaml
-NET_DATA_E2=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/etcdm2-network-config.yaml
-META_DATA_E2=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/etcdm2-meta-data.yaml
+USER_DATA_E2=/home/pablo/github/05_createVM/cloud-init-files/ubuntu_server/etcdm2-user-data.yaml
+NET_DATA_E2=/home/pablo/github/05_createVM/cloud-init-files/ubuntu_server/etcdm2-network-config.yaml
+META_DATA_E2=/home/pablo/github/05_createVM/cloud-init-files/ubuntu_server/etcdm2-meta-data.yaml
 
-USER_DATA_E3=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/etcdm3-user-data.yaml
-NET_DATA_E3=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/etcdm3-network-config.yaml
-META_DATA_E3=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/etcdm3-meta-data.yaml
+USER_DATA_E3=/home/pablo/github/05_createVM/cloud-init-files/ubuntu_server/etcdm3-user-data.yaml
+NET_DATA_E3=/home/pablo/github/05_createVM/cloud-init-files/ubuntu_server/etcdm3-network-config.yaml
+META_DATA_E3=/home/pablo/github/05_createVM/cloud-init-files/ubuntu_server/etcdm3-meta-data.yaml
 
 # jumbox Config files
-USER_DATA_J1=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/jumpbox1-user-data.yaml
-NET_DATA_J1=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/jumpbox1-network-config.yaml
-META_DATA_J1=/home/pablo/documentos/informatica/linux/certificaciones/05_createVM/cloud-init-files/ubuntu_server/jumpbox1-meta-data.yaml
+USER_DATA_J1=/home/pablo/github/05_createVM/cloud-init-files/ubuntu_server/jumpbox1-user-data.yaml
+NET_DATA_J1=/home/pablo/github/05_createVM/cloud-init-files/ubuntu_server/jumpbox1-network-config.yaml
+META_DATA_J1=/home/pablo/github/05_createVM/cloud-init-files/ubuntu_server/jumpbox1-meta-data.yaml
 
 date +%D-%T
 echo -e "${BLUE} Poweroff VM\n"
