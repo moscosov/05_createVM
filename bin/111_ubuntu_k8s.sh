@@ -236,7 +236,7 @@ sudo virt-install \
 --os-type=${OS_TYPE} \
 --os-variant=${OS_VARIANT} \
 --disk ${DIR_POOL}${VOL_LOADB},device=disk,bus=virtio \
---network network=default,mac=52:54:00:9a:ca:21 \
+--network network=default,mac=52:54:00:9a:ca:22 \
 --vnc --autoconsole graphical \
 --cloud-init user-data=${USER_DATA_LB1},meta-data=${META_DATA_LB1},network-config=${NET_DATA_LB1}
 
@@ -244,7 +244,7 @@ sleep 5
 
 date +%D-%T
 echo -e
-echo -e "${GREEN} Install ${JUMPBOX}\n"
+echo -e "${RED} Install ${JUMPBOX}\n"
 
 sudo virt-install \
 -n ${JUMPBOX} \
