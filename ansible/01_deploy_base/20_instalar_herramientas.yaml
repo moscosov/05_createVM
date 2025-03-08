@@ -36,6 +36,16 @@
       single_branch: yes
       version: master        
         ##when: inventory_hostname in groups['kubernetes']
+        #
+  - name: Copiar k8s.conf
+    become: true
+    become_user: root
+    ansible.builtin.copy:
+      src: /home/user1/github/05_createVM/ansible/01_deploy_base/resources/k8s.conf
+      #src: /home/pablo/documentos/informatica/linux/certificaciones/05_createVM/ansible/01_deploy_base/resources/k8s.conf
+      dest: /etc/modules-load.d
+      owner: root
+      group: root
     
   - name: Copiar download.txt
     become: true
