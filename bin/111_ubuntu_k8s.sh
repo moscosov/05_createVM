@@ -33,6 +33,7 @@ ETCDM1=10_etcd_master1_hard_lab
 ETCDM2=10_etcd_master2_hard_lab
 ETCDM3=10_etcd_master3_hard_lab
 JUMPBOX=10_jumpbox_hard_lab
+LOADB=10_loadb_hard_lab
 
 
 #PATHS Storage
@@ -58,6 +59,7 @@ VOL_ETCDM1=10_etcd_master1_hard.qcow2
 VOL_ETCDM2=10_etcd_master2_hard.qcow2
 VOL_ETCDM3=10_etcd_master3_hard.qcow2
 VOL_JUMPBOX=10_jumpbox_hard_lab.qcow2
+VOL_LOADB=10_loadb_hard_lab.qcow2
 
 # Master Config files
 USER_DATA_M1=/home/pablo/github/05_createVM/cloud-init-files/ubuntu_server/master1-user-data.yaml
@@ -115,6 +117,12 @@ USER_DATA_J1=/home/pablo/github/05_createVM/cloud-init-files/ubuntu_server/jumpb
 NET_DATA_J1=/home/pablo/github/05_createVM/cloud-init-files/ubuntu_server/jumpbox1-network-config.yaml
 META_DATA_J1=/home/pablo/github/05_createVM/cloud-init-files/ubuntu_server/jumpbox1-meta-data.yaml
 
+# Load balance Config files
+USER_DATA_LB1=/home/pablo/github/05_createVM/cloud-init-files/ubuntu_server/load1-user-data.yaml
+NET_DATA_LB1=/home/pablo/github/05_createVM/cloud-init-files/ubuntu_server/load1-network-config.yaml
+META_DATA_LB1=/home/pablo/github/05_createVM/cloud-init-files/ubuntu_server/load1-meta-data.yaml
+
+
 date +%D-%T
 echo -e "${BLUE} Poweroff VM\n"
 
@@ -132,6 +140,7 @@ sudo /usr/bin/virsh destroy --domain $ETCDM1
 sudo /usr/bin/virsh destroy --domain $ETCDM2 
 sudo /usr/bin/virsh destroy --domain $ETCDM3 
 sudo /usr/bin/virsh destroy --domain $JUMPBOX
+sudo /usr/bin/virsh destroy --domain $LOADB
 
 sleep 2
 
@@ -152,6 +161,7 @@ sudo /usr/bin/virsh undefine --domain $ETCDM1
 sudo /usr/bin/virsh undefine --domain $ETCDM2 
 sudo /usr/bin/virsh undefine --domain $ETCDM3
 sudo /usr/bin/virsh undefine --domain $JUMPBOX
+sudo /usr/bin/virsh undefine --domain $LOADB
 
 sleep 2
 
@@ -172,7 +182,7 @@ sudo /usr/bin/virsh vol-delete --pool $LIVB_POOL --vol $VOL_ETCDM1
 sudo /usr/bin/virsh vol-delete --pool $LIVB_POOL --vol $VOL_ETCDM2
 sudo /usr/bin/virsh vol-delete --pool $LIVB_POOL --vol $VOL_ETCDM3
 sudo /usr/bin/virsh vol-delete --pool $LIVB_POOL --vol $VOL_JUMPBOX
-
+sudo /usr/bin/virsh vol-delete --pool $LIVB_POOL --vol $VOL_LOADB
 sleep 2
 
 date +%D-%T
@@ -207,11 +217,30 @@ qemu-img create -b $IMAGE -f qcow2 -F qcow2 ${DIR_POOL}${VOL_ETCDM2} $ETCDDS
 qemu-img create -b $IMAGE -f qcow2 -F qcow2 ${DIR_POOL}${VOL_ETCDM3} $ETCDDS
 #chown pablo:users ${DIR_POOL}${VOL_ETCDM3}
 
-# Create jumpbox storage
-qemu-img create -b $IMAGE -f qcow2 -F qcow2 ${DIR_POOL}${VOL_JUMPBOX} $NODEDS
+# Create jumpbox and loadb storage
+qemu-img create -b $IMAGE -f qcow2 -F qcow2 ${DIR_POOL}${VOL_JUMPBOX} $ETCDDS
+qemu-img create -b $IMAGE -f qcow2 -F qcow2 ${DIR_POOL}${VOL_LOADB} $ETCDDS
+
 
 
 sleep 2
+
+date +%D-%T
+echo -e
+echo -e "${GREEN} Install ${LOADB}\n"
+
+sudo virt-install \
+-n ${LOADB} \
+-r ${MEM_SIZE} \
+--vcpus ${VCPUS} \
+--os-type=${OS_TYPE} \
+--os-variant=${OS_VARIANT} \
+--disk ${DIR_POOL}${VOL_LOADB},device=disk,bus=virtio \
+--network network=default,mac=52:54:00:9a:ca:21 \
+--vnc --autoconsole graphical \
+--cloud-init user-data=${USER_DATA_LB1},meta-data=${META_DATA_LB1},network-config=${NET_DATA_LB1}
+
+sleep 5
 
 date +%D-%T
 echo -e

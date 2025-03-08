@@ -29,7 +29,9 @@
       sudo virsh net-update default add-last ip-dhcp-host '<host mac="52:54:00:9a:cc:32"  ip="192.168.122.132"/>' --live --config --parent-index 0
       sudo virsh net-update default add-last ip-dhcp-host '<host mac="52:54:00:9a:cc:33"  ip="192.168.122.133"/>' --live --config --parent-index 0
       sudo virsh net-update default add-last ip-dhcp-host '<host mac="52:54:00:9a:ca:21"  ip="192.168.122.211"/>' --live --config --parent-index 0
+      sudo virsh net-update default add-last ip-dhcp-host '<host mac="52:54:00:9a:ca:22"  ip="192.168.122.212"/>' --live --config --parent-index 0
       sudo virsh net-update default add  dns-host  '<host ip="192.168.122.211"><hostname>10jumpbox1.hard.lab</hostname></host>' --live --config
+      sudo virsh net-update default add  dns-host  '<host ip="192.168.122.212"><hostname>10loadb1.hard.lab</hostname></host>' --live --config
       sudo virsh net-update default add  dns-host  '<host ip="192.168.122.171"><hostname>10master1.hard.lab</hostname></host>' --live --config
       sudo virsh net-update default add  dns-host  '<host ip="192.168.122.172"><hostname>10master2.hard.lab</hostname></host>' --live --config
       sudo virsh net-update default add  dns-host  '<host ip="192.168.122.173"><hostname>10master3.hard.lab</hostname></host>' --live --config
@@ -42,6 +44,7 @@
       sudo virsh net-update default add  dns-host  '<host ip="192.168.122.131"><hostname>10etcdm1.hard.lab</hostname></host>' --live --config
       sudo virsh net-update default add  dns-host  '<host ip="192.168.122.132"><hostname>10etcdm2.hard.lab</hostname></host>' --live --config
       sudo virsh net-update default add  dns-host  '<host ip="192.168.122.133"><hostname>10etcdm3.hard.lab</hostname></host>' --live --config
+      
     ignore_errors: true    
     when: inventory_hostname in groups['base']
     

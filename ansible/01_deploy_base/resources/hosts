@@ -21,6 +21,8 @@
 192.168.122.171     10master1   10master1.hard.lab
 192.168.122.172     10master2   10master2.hard.lab
 192.168.122.173     10master3   10master3.hard.lab
+192.168.122.211     10jumpbox1  10jumpbox1.hard.lab
+192.168.122.212     10loadb1    10loadb1.hard.lab
 
 # special IPv6 addresses
 ::1             localhost ipv6-localhost ipv6-loopback
