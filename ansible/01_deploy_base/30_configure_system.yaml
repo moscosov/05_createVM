@@ -1,0 +1,53 @@
+---
+#- name: setear timezone, generar y distribuir llaves ssh
+#  hosts: kubernetes
+#  become: true
+#  become_user: root  
+#  vars:
+#    - private: "/root/.ssh/id_ed2551"
+  
+#  tasks: 
+  
+  - name: Set timezone to America/Santiago
+    community.general.timezone:
+      rtc: UTC
+      name: America/Santiago
+
+  - name: Restart sshd
+    ansible.builtin.service:
+      name: sshd
+      state: restarted
+  
+  - name: Add the overlay module
+    community.general.modprobe:
+      name: overlay
+      state: present
+  
+  - name: Add br_net_filter module
+    community.general.modprobe:
+      name: br_netfilter
+      state: present
+
+  - name: setear ip_forward
+    ansible.posix.sysctl:
+      name: net.ipv4.ip_forward
+      value: '1'
+      sysctl_set: true
+      state: present
+      reload: true
+
+  - name: setear ip_call-ip6tables
+    ansible.posix.sysctl:
+      name: net.bridge.bridge-nf-call-ip6tables
+      value: '1'
+      sysctl_set: true
+      state: present
+      reload: true
+
+  - name: setear ip_call-iptables
+    ansible.posix.sysctl:
+      name: net.bridge.bridge-nf-call-iptables
+      value: '1'
+      sysctl_set: true
+      state: present
+      reload: true
