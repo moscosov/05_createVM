@@ -1,0 +1,54 @@
+#cloud-config
+# Basic system setup
+hostname: 20node2
+fqdn: 20node2.hard.lab
+disable_root: 0
+
+#Users
+users:
+  - name: user1
+    hashed_passwd: $6$undrHptAkQLHjxsv$qypMOxFgPomyaNBNVAtJbxeG2TjJKaFU79b8I5t.viNj/cRb/Y8Rtl4G1WrTSrbq9ZIZ2EkamQS/k3JJOAhFF/ 
+    ssh_pwauth: true
+    ssh_authorized_keys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICcVbfuPhmpEw1wASVMql5rUgC9Xo5V+shwXECgc813g pablo@kuberlab.local
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGNiAaBNVcfpV1fgKS/qNznHDqCXpru23q8NlFTqcXmE pablo@leap156.work.local
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINwpqMpjMHSwH37uelQnWTULHw0hZ3+YwqO9QhTDIMQl user1@20ansmaster.lab.local
+    sudo: ["ALL=(ALL) NOPASSWD:ALL"]
+    disable_root: 0
+    groups: sudou
+    lock_passwd: false
+    shell: /bin/bash
+  - name: root
+    ssh_pwauth: true
+    ssh_authorized_keys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICcVbfuPhmpEw1wASVMql5rUgC9Xo5V+shwXECgc813g pablo@kuberlab.local
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGNiAaBNVcfpV1fgKS/qNznHDqCXpru23q8NlFTqcXmE pablo@leap156.work.local
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINwpqMpjMHSwH37uelQnWTULHw0hZ3+YwqO9QhTDIMQl user1@20ansmaster.lab.local
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII+LIys3qqSQQi7rGaDlIQbij+ut5iuV8f05xzj1rjjV root@10jumpbox1.hard.lab
+chpasswd:
+  expire: false
+  users:
+  - {name: root, password: password, type: text}
+
+# Package management
+package_update: true
+package_upgrade: true
+packages:
+  - git
+  - nginx
+  - python3
+  - vim-nox
+  - bash-completion
+
+runcmd:
+  - sed -i 's/^Defaults.*requiretty/#&/g' /etc/sudoers
+  - sed -i -e '$aUseDNS no' /etc/ssh/sshd_config
+  - sed -i 's/#GSSAPIAuthentication\ yes/GSSAPIAuthentication\ no/g' /etc/ssh/sshd_config
+  - sed -i 's/#PasswordAuthentication/PasswordAuthentication/g' /etc/ssh/sshd_config
+  - sed -i 's/#PermitRootLogin\ prohibit-password/PermitRootLogin\ yes/g' /etc/ssh/sshd_config
+  - sed -i 's/#PubkeyAuthentication/PubkeyAuthentication/g' /etc/ssh/sshd_config
+  - sed -i 's/#AuthorizedKeysFile/AuthorizedKeysFile/g' /etc/ssh/sshd_config
+  - sed -i 's/Include/#Include/g' /etc/ssh/sshd_config
+  - sysctl net.ipv4.ip_forward=1
+  - sysctl net.bridge.bridge-nf-call-ip6tables=1
+  - sysctl net.bridge.bridge-nf-call-iptables=1

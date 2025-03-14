@@ -1,0 +1,37 @@
+#
+# hosts         This file describes a number of hostname-to-address
+#               mappings for the TCP/IP subsystem.  It is mostly
+#               used at boot time, when no name servers are running.
+#               On small systems, this file can be used instead of a
+#               "named" name server.
+# Syntax:
+#    
+# IP-Address  Full-Qualified-Hostname  Short-Hostname
+#
+
+192.168.122.231     20etcdm1            20etcdm1.hard.lab
+192.168.122.232     20etcdm2            20etcdm2.hard.lab
+192.168.122.233     20etcdm3            20etcdm3.hard.lab
+192.168.122.81      20node1             20node1.hard.lab
+192.168.122.82      20node2             20node2.hard.lab
+192.168.122.83      20node3             20node3.hard.lab
+192.168.122.84      20node4             20node4.hard.lab
+192.168.122.85      20node5             20node5.hard.lab
+192.168.122.86      20node6             20node6.hard.lab
+192.168.122.221     20controlplane1     20controlplane1.hard.lab
+192.168.122.222     20controlplane2     20controlplane2.hard.lab
+192.168.122.223     20controlplane3     20controlplane3.hard.lab
+192.168.122.211     10jumpbox1          10jumpbox1.hard.lab
+192.168.122.234     20loadb1            20loadb1.hard.lab
+
+# special IPv6 addresses
+::1             localhost ipv6-localhost ipv6-loopback
+
+fe00::0         ipv6-localnet
+
+ff00::0         ipv6-mcastprefix
+ff02::1         ipv6-allnodes
+ff02::2         ipv6-allrouters
+ff02::3         ipv6-allhosts
+
+192.168.1.99    mars    mars.lab.local

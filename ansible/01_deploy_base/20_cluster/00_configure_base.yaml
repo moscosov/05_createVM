@@ -1,0 +1,17 @@
+---
+- name: Install Base System
+  hosts: kubernetes
+  become: true
+  become_user: root   
+    
+  tasks:
+  
+    - name: Configure base ubuntu k8s
+      include_tasks: 20_instalar_herramientas.yaml
+
+    - name: Configure system
+      include_tasks: 30_configure_system.yaml
+        
+    - name: Configure systemd and ssh key
+      include_tasks: 40_create_ssh_key_pair.yaml
+

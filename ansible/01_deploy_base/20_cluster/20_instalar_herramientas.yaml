@@ -1,0 +1,78 @@
+---
+#- name: Instalar herramientas
+#  hosts: kubernetes
+#  become: true
+#  become_user: root  
+  
+#  tasks: 
+
+  - name: Hacer un ping
+    become: yes
+    become_user: root
+    ansible.builtin.ping:
+ 
+  - name: instalar herramientas
+    become: true
+    become_user: root  
+    ansible.builtin.apt:
+      pkg: 
+        - git
+        - wget
+        - curl
+        - vim-nox
+        - openssl
+        - bash-completion
+        - elinks
+        - sshpass  
+      state: present
+        ##when: inventory_hostname in groups['kubernetes']   
+  
+  - name: Example clone of a single branch
+    become: true
+    become_user: root  
+    ansible.builtin.git:
+      repo: https://github.com/kelseyhightower/kubernetes-the-hard-way.git
+      dest: /root/kubernetes-the-hard-way
+      single_branch: yes
+      version: master        
+        ##when: inventory_hostname in groups['kubernetes']
+        #
+  - name: Copiar k8s.conf
+    become: true
+    become_user: root
+    ansible.builtin.copy:
+      src: /home/user1/github/05_createVM/ansible/01_deploy_base/20_cluster/20_cluster/resources/k8s.conf
+      #src: /home/pablo/documentos/informatica/linux/certificaciones/05_createVM/ansible/01_deploy_base/20_cluster/resources/k8s.conf
+      dest: /etc/modules-load.d
+      owner: root
+      group: root
+    
+  - name: Copiar download.txt
+    become: true
+    become_user: root  
+    ansible.builtin.copy:
+      src: /home/user1/github/05_createVM/ansible/01_deploy_base/20_cluster/resources/downloads.txt
+      #src: /home/pablo/documentos/informatica/linux/certificaciones/05_createVM/ansible/01_deploy_base/20_cluster/resources/downloads.txt
+      dest: /root/kubernetes-the-hard-way
+      owner: root
+      group: root
+    #when: inventory_hostname in groups['kubernetes']
+    
+  - name: Descargar binarios k8s
+    become: true
+    become_user: root  
+    ansible.builtin.shell: wget -q --show-progress --https-only --timestamping -P downloads -i downloads.txt   
+    args:
+      chdir: /root/kubernetes-the-hard-way
+    #when: inventory_hostname in groups['kubernetes']
+
+  - name: Copiar /etc/hosts.txt
+    become: true
+    become_user: root  
+    ansible.builtin.copy:
+      src: /home/user1/github/05_createVM/ansible/01_deploy_base/20_cluster/resources/hosts
+      #src: /home/pablo/documentos/informatica/linux/certificaciones/05_createVM/ansible/01_deploy_base/20_cluster/resources/hosts
+      dest: /etc/
+      owner: root
+      group: root
+    #when: inventory_hostname in groups['kubernetes']    
