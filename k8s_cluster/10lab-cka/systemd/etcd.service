@@ -1,0 +1,30 @@
+cat <<EOF | tee /etc/systemd/system/etcd.service
+[Unit]
+Description=etcd
+Documentation=https://github.com/coreos
+
+[Service]
+ExecStart=/usr/local/bin/etcd \\
+  --name ${ETCD_NAME} \\
+  --cert-file=/etc/etcd/etcd-server.crt \\
+  --key-file=/etc/etcd/etcd-server.key \\
+  --peer-cert-file=/etc/etcd/etcd-server.crt \\
+  --peer-key-file=/etc/etcd/etcd-server.key \\
+  --trusted-ca-file=/etc/etcd/ca.crt \\
+  --peer-trusted-ca-file=/etc/etcd/ca.crt \\
+  --peer-client-cert-auth \\
+  --client-cert-auth \\
+  --initial-advertise-peer-urls https://${IP_NODE}:2380 \\
+  --listen-peer-urls https://${IP_NODE}:2380 \\
+  --listen-client-urls https://${IP_NODE}:2379,https://127.0.0.1:2379 \\
+  --advertise-client-urls https://${IP_NODE}:2379 \\
+  --initial-cluster-token etcd-cluster-0 \\
+  --initial-cluster 10etcdm1=https://${ETCDM1}:2380,10etcdm2=https://${ETCDM2}:2380,10etcdm3=https://${ETCDM3}:2380 \\
+  --initial-cluster-state new \\
+  --data-dir=/var/lib/etcd
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
+EOF
