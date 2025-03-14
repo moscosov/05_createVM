@@ -19,8 +19,8 @@
 
   - name: Copiar machine.txt
     ansible.builtin.copy:
-      src: /home/user1/github/05_createVM/ansible/01_deploy_base/resources/machine.txt
-      #src: /home/pablo/documentos/informatica/linux/certificaciones/05_createVM/ansible/01_deploy_base/resources/machine.txt
+      src: /home/user1/github/05_createVM/ansible/01_deploy_base/10_cluster/resources/machine.txt
+      #src: /home/pablo/documentos/informatica/linux/certificaciones/05_createVM/ansible/01_deploy_base/10_cluster/resources/machine.txt
       dest: /root/
       owner: root
       group: root

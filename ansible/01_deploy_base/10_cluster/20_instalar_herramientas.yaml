@@ -41,8 +41,8 @@
     become: true
     become_user: root
     ansible.builtin.copy:
-      src: /home/user1/github/05_createVM/ansible/01_deploy_base/resources/k8s.conf
-      #src: /home/pablo/documentos/informatica/linux/certificaciones/05_createVM/ansible/01_deploy_base/resources/k8s.conf
+      src: /home/user1/github/05_createVM/ansible/01_deploy_base/10_cluster/10_cluster/resources/k8s.conf
+      #src: /home/pablo/documentos/informatica/linux/certificaciones/05_createVM/ansible/01_deploy_base/10_cluster/resources/k8s.conf
       dest: /etc/modules-load.d
       owner: root
       group: root
@@ -51,8 +51,8 @@
     become: true
     become_user: root  
     ansible.builtin.copy:
-      src: /home/user1/github/05_createVM/ansible/01_deploy_base/resources/downloads.txt
-      #src: /home/pablo/documentos/informatica/linux/certificaciones/05_createVM/ansible/01_deploy_base/resources/downloads.txt
+      src: /home/user1/github/05_createVM/ansible/01_deploy_base/10_cluster/resources/downloads.txt
+      #src: /home/pablo/documentos/informatica/linux/certificaciones/05_createVM/ansible/01_deploy_base/10_cluster/resources/downloads.txt
       dest: /root/kubernetes-the-hard-way
       owner: root
       group: root
@@ -70,8 +70,8 @@
     become: true
     become_user: root  
     ansible.builtin.copy:
-      src: /home/user1/github/05_createVM/ansible/01_deploy_base/resources/hosts
-      #src: /home/pablo/documentos/informatica/linux/certificaciones/05_createVM/ansible/01_deploy_base/resources/hosts
+      src: /home/user1/github/05_createVM/ansible/01_deploy_base/10_cluster/resources/hosts
+      #src: /home/pablo/documentos/informatica/linux/certificaciones/05_createVM/ansible/01_deploy_base/10_cluster/resources/hosts
       dest: /etc/
       owner: root
       group: root
