@@ -14,7 +14,7 @@ BLUE="\033[1;34m"
 # Define global variables
 MEM_SIZE=4096
 VCPUS=2
-#OS_VARIANT="ubuntu22.04"
+OS_VARIANT="ubuntu22.04"
 OS_TYPE="linux"
 NODEDS="25G"
 ETCDDS="15G"
