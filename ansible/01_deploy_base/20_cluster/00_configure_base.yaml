@@ -1,6 +1,6 @@
 ---
 - name: Install Base System
-  hosts: kubernetes
+  hosts: 20cluster
   become: true
   become_user: root   
     

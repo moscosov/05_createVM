@@ -1,10 +1,10 @@
 ---
-#- name: Instalar herramientas
-#  hosts: kubernetes
-#  become: true
-#  become_user: root  
+- name: Instalar herramientas
+  hosts: 20cluster
+  become: true
+  become_user: root  
   
-#  tasks: 
+  tasks: 
 
   - name: Hacer un ping
     become: yes
@@ -26,6 +26,22 @@
         - sshpass  
       state: present
         ##when: inventory_hostname in groups['kubernetes']   
+
+  - name: Copiar machine.txt
+    ansible.builtin.copy:
+      src: /home/user1/github/05_createVM/ansible/01_deploy_base/20_cluster/resources/machine.txt
+      #src: /home/pablo/documentos/informatica/linux/certificaciones/05_createVM/ansible/01_deploy_base/20_cluster/resources/machine.txt
+      dest: /root/
+      owner: root
+      group: root
+
+  - name: Copiar bashrc
+    ansible.builtin.copy:
+      src: /home/user1/github/05_createVM/ansible/01_deploy_base/20_cluster/resources/bashrc
+      #src: /home/pablo/documentos/informatica/linux/certificaciones/05_createVM/ansible/01_deploy_base/20_cluster/resources/machine.txt
+      dest: /root/.bashrc
+      owner: root
+      group: root
   
   - name: Example clone of a single branch
     become: true
@@ -41,7 +57,7 @@
     become: true
     become_user: root
     ansible.builtin.copy:
-      src: /home/user1/github/05_createVM/ansible/01_deploy_base/20_cluster/20_cluster/resources/k8s.conf
+      src: /home/user1/github/05_createVM/ansible/01_deploy_base/20_cluster/resources/k8s.conf
       #src: /home/pablo/documentos/informatica/linux/certificaciones/05_createVM/ansible/01_deploy_base/20_cluster/resources/k8s.conf
       dest: /etc/modules-load.d
       owner: root

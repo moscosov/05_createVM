@@ -2,20 +2,20 @@
 mars.lab.local ansible_ssh_user=pablo
 
 [kubernetes]
-20etcdm1.hard.lab   ansible_ssh_user=root
-20etcdm2.hard.lab   ansible_ssh_user=root
-20etcdm3.hard.lab   ansible_ssh_user=root
-20node1.hard.lab  ansible_ssh_user=root
-20node2.hard.lab  ansible_ssh_user=root
-20node3.hard.lab  ansible_ssh_user=root
-20node4.hard.lab  ansible_ssh_user=root
-20node5.hard.lab  ansible_ssh_user=root
-20node6.hard.lab  ansible_ssh_user=root
-20controlplane1.hard.lab  ansible_ssh_user=root
-20controlplane2.hard.lab  ansible_ssh_user=root
-20controlplane3.hard.lab  ansible_ssh_user=root
-10jumpbox1.hard.lab ansble_ssh_user=root
-20loadb1.hard.lab ansible_ssh_user=root
+#20etcdm1.hard.lab   ansible_ssh_user=root
+#20etcdm2.hard.lab   ansible_ssh_user=root
+#20etcdm3.hard.lab   ansible_ssh_user=root
+#20node1.hard.lab  ansible_ssh_user=root
+#20node2.hard.lab  ansible_ssh_user=root
+#20node3.hard.lab  ansible_ssh_user=root
+#20node4.hard.lab  ansible_ssh_user=root
+#20node5.hard.lab  ansible_ssh_user=root
+#20node6.hard.lab  ansible_ssh_user=root
+#20controlplane1.hard.lab  ansible_ssh_user=root
+#20controlplane2.hard.lab  ansible_ssh_user=root
+#20controlplane3.hard.lab  ansible_ssh_user=root
+#10jumpbox1.hard.lab ansble_ssh_user=root
+#20loadb1.hard.lab ansible_ssh_user=root
 
 [20cluster]
 20etcdm1.hard.lab   ansible_ssh_user=root
